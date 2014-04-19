@@ -1,0 +1,1 @@
+document.write('<div id="faker"><p>&nbsp;</p></div>');

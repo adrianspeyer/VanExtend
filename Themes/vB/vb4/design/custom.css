@@ -1,0 +1,570 @@
+/** menu at top **/
+#Head{
+    background: none repeat scroll 0 0 #E9E9E9;
+}
+
+body, Frame{
+  background-color:#E9E9E9;
+  background-image:none;
+  background-position:initial initial;
+  background-repeat:initial initial;
+}
+
+body a {
+  color:#417394;
+  text-decoration:none;
+}
+
+body {
+  color:#3E3E3E;
+  font-size:13px;
+  line-height:1.23;
+}
+
+#Body {
+width: 75%;
+   text-align: left;
+   margin: 15px auto 0;
+   background-color: #fff;
+   padding-bottom: 10px;
+}
+
+
+body #Head h1 {
+   display: inline-block;
+   font-weight: bold;
+   margin: 0;
+   padding: 21px 15px 15px 0;
+   border: 0;
+}
+
+div#Content {
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 5px;
+}
+
+#navhead
+{
+ background: none repeat scroll 0 0 #000;
+ width: 75%;
+   background-position:initial initial;
+  background-repeat:repeat no-repeat;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  margin:0 auto;
+  padding:0;
+  height:100px;
+}
+
+#Menu {
+  background-color:#7192A8;
+  background-image:url("./images/nav-vb.png");
+  background-position:initial initial;
+  background-repeat:repeat no-repeat;
+  height:30px;
+  padding:0 0 0 20px;
+  width: auto;
+}
+
+
+#Menu  li  a {
+margin:10px;
+}
+
+#Menu {
+   vertical-align: bottom;
+}
+#Menu li {
+   line-height: 27px;
+   float: left;
+   position: relative;
+   display: block;
+   list-style: none;
+   padding: 0;
+   margin: 0 4px 0 0;
+   font-weight: bold;
+   text-align: left;
+}
+* html #Menu li {
+	display: inline;
+}
+#Menu a {
+font: bold 12px Arial, Calibri, Verdana, Geneva, sans-serif;
+text-decoration: none;
+line-height: 26px;
+}
+* html #Menu a  {
+   display: inline;
+   padding: 6px 10px;
+}
+#Menu li.NonTab,
+#Menu li.NonTab a {
+   font-weight: normal;
+}
+#Menu ul {
+   background: #38abe3;
+}
+#Menu a {
+   color: #fff;
+}
+#Menu a:hover {
+   color: #fff;
+   text-decoration: underline;
+}
+#Menu .Alert {
+	text-shadow: none;
+   background: #f2fcff;
+   color: #299fc7;
+}
+
+
+div#Head div#navhead div#loginbox{
+
+}
+
+.registerbox{
+padding: 0 10px;
+text-align: center;
+-moz-border-radius-bottomleft: 5px;
+-webkit-border-bottom-left-radius: 5px;
+border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+-webkit-border-bottom-right-radius: 5px;
+border-bottom-right-radius: 5px;
+height: 26px;
+display: block;
+margin-right: 10px;
+text-align: left;
+clear: left;
+background: #7192A8;
+float:right;
+clear: left;
+}
+
+a.registerbox{
+padding-top:5px;
+}
+
+div#loginbox div.usermebox
+{
+text-align: center;
+text-align: left;
+clear: left;
+float:right;
+clear: left;
+padding-right:25px;
+}
+
+div#loginbox div.usermebox div.MeBox div.WhoIs
+{
+ display: inline-block;
+}
+
+div#loginbox div.usermebox img.ProfilePhoto
+{
+float:left;
+}
+
+
+div#loginbox div.Loginform form#Form_User_SignIn fieldset#logindetails.logindetails .InputBox
+{
+width:75px;
+}
+
+div.Loginform form#Form_User_SignIn{
+  clear:left;
+  display:block;
+  float:right;
+  margin-right:10px;
+  min-width:220px;
+  text-align:left;
+}
+
+ div.Loginform form#Form_User_SignIn fieldset#logindetails.logindetails .InputBox{
+  border:0;
+  font-size:11px;
+  margin:3px 0 0;
+  padding:1px;
+  vertical-align:baseline;
+}
+
+
+
+.logindetails {
+  background-color:#7192A8;
+  background-position:initial initial;
+  background-repeat:initial initial;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  height:26px;
+  padding:0 10px;
+  text-align:center;
+}
+
+
+
+div#Search
+{
+margin-right: 20px;
+margin-top: -28px;
+}
+
+
+.MeMenu .Sprite16 {
+    background-image: url("./images/sprites.png");
+}
+.SpNotifications {
+    background-position: -32px -212px;
+}
+.SpInbox {
+    background-position: -16px -228px;
+}
+.SpBookmarks {
+    background-position: -80px -245px;
+}
+.SpDashboard {
+    background-position: 0 -212px;
+}
+.SpSignOut {
+    background-position: -2px -102px;
+}
+
+.SpOptions {
+    background-position: 0px -212px;
+}
+
+#Panel {
+display: block;
+margin-top: 15px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-topleft: 5px;
+-webkit-border-top-right-radius: 5px;
+-webkit-border-top-left-radius: 5px;
+-moz-box-shadow: -2px 2px 2px #c8c8c8;
+-webkit-box-shadow: -2px 2px 2px #c8c8c8;
+box-shadow: -2px 2px 2px #c8c8c8;
+margin-bottom: 10px;
+	}
+
+div#Panel, div#PrePanel
+{
+border: 1px solid #c4c4c4;
+background: rgb(255, 255, 255) url('./images/greytowhite.png') repeat-x;
+_background-image: none;
+padding: 10px;
+margin-left:10px;
+margin-right:10px;
+padding-top:10px;
+width: 96% !important;
+}
+
+div#Panel h2
+{
+height: 16px;
+font-size: 12px;
+font-weight: bold;
+color: rgb(255, 255, 255);
+background: #707070 url('./images//newbtn_middle.png') repeat-x;
+_background-image: none;
+border: 1px solid #606060;
+font: normal 12px Tahoma, Calibri, Verdana, Geneva, sans-serif;
+color: #ffffff;
+_background-image: none;
+padding: 4px 10px 4px 10px;
+border: 1px solid #5a7f97;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-topleft: 5px;
+-webkit-border-top-right-radius: 5px;
+-webkit-border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+}
+
+div#PrePanel
+{
+font-size: 12px;
+font-weight: bold;
+color: rgb(255, 255, 255);
+background: #707070 url('./images//newbtn_middle.png') repeat-x;
+_background-image: none;
+border: 1px solid #606060;
+font: normal 12px Tahoma, Calibri, Verdana, Geneva, sans-serif;
+color: #ffffff;
+_background-image: none;
+padding: 4px 10px 4px 10px;
+border: 1px solid #5a7f97;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-topleft: 5px;
+-webkit-border-top-right-radius: 5px;
+-webkit-border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+height: 20px;
+margin-top:175px;
+margin-bottom: -15px;
+}
+
+
+div#PrePanel h2 {
+display: block;
+-webkit-margin-before: 0.83em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+	
+div.Box {
+padding:10px;
+}
+
+
+/* category */
+
+div#Body div#Content div.DataTableWrap table.DataTable thead tr
+{
+color:#fff;
+}
+
+
+div#Content div.DataTableWrap table.DataTable 
+{
+background-color:#7192A8;
+  background-image:url ("./images/nav-vb.png");
+ background-position:initial initial;
+  background-repeat:repeat no-repeat;
+  border:1px solid #5A7F97;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  clear:both;
+color:#3E3E3E;
+  float:left;
+  font-family:Arial, Tahoma, Calibri, Verdana, Geneva, sans-serif;
+  font-size:12px;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:bold;
+  line-height:normal;
+  margin-top:8px;
+  padding:0;
+  width:100%;
+}
+/*category table */
+ div.DataTableWrap table.DataTable tbody td
+{
+  background-color:#FFFFFF;
+  background-image:url("./images/grey-up-vb.png");
+  background-position:0 100%;
+  background-repeat:repeat no-repeat;
+  border-top-color:#FFFFFF;
+  border-top-style:solid;
+  border-top-width:1px;
+}
+
+
+
+
+/*link text color --most text on the site will use this */
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Menu text color for discussions*/
+.ItemDiscussion .Meta, .DataList .Meta {
+    font-size: 11px;
+}
+
+body a:hover,
+body a:hover .time,
+body a:hover .shade,
+body a:hover .understate {
+	color:#417394;
+	text-decoration:underline;
+}
+
+body a.understate,
+body a .understate {
+	color:inherit;
+	text-decoration:none;
+	*clear:expression(style.color = parentNode.currentStyle.color, style.clear = "none", 0);
+}
+
+
+/*adds a nice little bar to separare discussion from comments */
+div.MessageList div.Discussion
+{
+border-bottom: solid 1px #78C5D0;
+padding-bottom:10px
+}
+
+body.Profile #Content {
+   float: right;
+   margin: 0 0 40px;
+   width: 680px;
+}
+
+body.Profile #Panel {
+ 
+}
+
+/** Side Panel and Box **/
+
+
+/** Popup **/
+
+div.Popup h1, div.Popup h2 {
+   background: #38ABE3;
+   color: #fff;
+   margin: -10px -10px 10px;
+   padding: 5px 10px;
+}
+
+a.Close {
+   color: #fff;
+}
+
+/** Misc **/
+.ProfilePhotoLarge {
+    width: 250px;
+}
+
+/*mebar*/
+div#navhead div#loginbox div.usermebox div.MeBox div.WhoIs div.MeMenu span.ToggleFlyout div.Flyout
+{
+margin-left:-100px;
+}
+
+.Flyout:before, .Flyout:after {
+display:none;
+}
+
+
+/* highlight for search */
+mark {
+    background: none repeat scroll 0 0 #B6FF00;
+    color: inherit;
+    padding: 0 2px;
+}
+
+div#Content div.Profile div.DataListWrap
+{
+display:none;
+}
+
+/*Line between messages*/
+div#Frame div#Body div#Content div.DataListWrap ul.DataList li item
+{
+border-bottom: solid 1px #78C5D0;
+padding:10px;
+}
+
+/*option delete x*/
+div.Options a.Delete
+{
+color:yellow;
+}
+
+/*color of alert link */
+div#Content div.DismissMessage a:hover
+{
+color:red;
+}
+
+/*Color of people added to conveversation*/
+div.TextBoxWrapper ul.token-input-list li.token-input-token
+{
+color:#000;
+}
+
+.Search:after,
+div#Search:after {
+   content: ".";
+   display: block;
+   height: 0;
+   clear: both;
+   visibility: hidden;
+}
+
+#Head h1 a span {
+   font-size: 24px;
+   color:#fff;
+    margin: 10px;
+}
+#Head .Search,
+#Head #Search {
+   right: 0;
+   text-align: right;
+}
+#Head form {
+   float: right;
+   padding: 0;
+}
+#Head form input.InputBox {
+	vertical-align: top;
+   width: 200px;
+   border: 0;
+   padding: 4px;
+	margin: 0 6px 0 0;
+   color: #969696;
+   font-size: 13px;
+	background: #fff; 
+   -moz-border-radius: 2px;
+   -webkit-border: 2px;
+   border-bottom: 2px;
+	vertical-align: bottom;
+}
+#Head form input.Button {
+	font-size: 11px;
+	border: none;
+}
+
+#Foot div {
+	width: 960px;
+	padding: 6px 0;
+	margin: 20px auto 0;
+	text-align: left;
+	text-align:center !important;
+}
+
+div.Message blockquote
+{
+background-color:#A3A3A3;
+color: #000;
+padding:10px;
+}
+ 
+div.Message blockquote a
+{
+color: grey;
+}
+ hover
+.Pager .Highlight {
+    color: #000;
+}
+
+li.Gender {
+  display:none;
+}
+
+ a.PostThread {
+    background: url("./images/newbtn_middle.png") repeat-x scroll left top #417394;
+    border: 0 none;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px #DDDDDD;
+    clear: right;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font: 14px Arial,sans-serif;
+    padding: 4px 15px;
+	margin-top: 5px;
+}
+
+ a.PostThread:hover {
+	background: #5b8dae url(images/buttons/newbtn_middle.png) repeat-x left top;
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+}

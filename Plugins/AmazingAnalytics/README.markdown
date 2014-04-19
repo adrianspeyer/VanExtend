@@ -1,0 +1,2 @@
+#Amazing Analytics for Vanilla Forums#
+Amazing Analytics provide extra data into your Google Analytics. It will add data on which Category are most viewed (as events). It will add custom variables when a user is logged in vs not logged in. It will add a custom variable of the highest role type a user currently posseses. If you are using the profile extender add-on, you will also get data for first 3 fields added. Please make sure this data is not personally identifiable information, as this is against Google Analytics TOS -- eg name, telephone number..

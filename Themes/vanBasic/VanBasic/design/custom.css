@@ -1,0 +1,437 @@
+/**Add background image or color for different times of year/themes**/
+body {
+background-image:url("./bkg/holiday-optimized.png");
+background-size:cover;
+background-repeat:no-repeat;
+background-color: #252525;
+}
+
+/** Keep top menu at top **/
+#Head{
+    background: none repeat scroll 0 0 #000000;
+    color: #FFFFFF;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	width: 100%;
+
+}
+
+/** fix below on margin-top if you use an image for your logo **/
+div#Frame
+{
+margin-top:120px;
+}
+/** Wireframe **/
+
+/*move content to the left, panel to to the right.
+#Content {
+    float: left;
+    margin: 0 0 40px;
+    width: 690px;
+}
+
+
+#Panel {
+    float: right;
+    width: 250px;
+	}
+*/
+
+/*move panel to the left, content to the right*/
+#Content {
+    float: right;
+    margin: 0 0 40px;
+    width: 690px;
+}
+
+#Panel {
+    float: left;
+    width: 250px;
+	}
+
+/*filter for category*/
+div#Frame div#Body div#Panel div.CategoryFilter
+{
+background-color:#555;
+padding:10px;
+margin-top: 5px;
+margin-bottom:10px;
+}
+
+/*mebox*/
+div#Frame div#Body div#Panel div.MeBox
+{
+background-color:#fff;
+padding:10px;
+}
+
+.MenuItems a, .MenuItems a:link, .MenuItems a:visited, .MenuItems a:active {
+    color: #fff !important;
+    display: block;
+    line-height: 18px;
+    padding: 3px 15px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+/*mebox menu pop-ups*/
+div#Frame div#Body div#Panel div.MeBox div.WhoIs div.MeMenu span.ToggleFlyout div.Flyout ul.PopList
+{
+background-color:#fff;
+}
+
+/*mebox member name*/
+div#Frame div#Body div#Panel div.MeBox a
+{
+color: #000;
+}
+
+/*color for option menu*/
+span.Options span.ToggleFlyout ul.Flyout
+{
+background-color:#000;
+}
+
+/*background color for main area */
+tbody
+{
+background-color:#222;
+}
+
+div#Content
+{
+background-color:#000;
+padding:5px;
+color: #fff;
+}
+
+/*panel color active*/
+#Panel .FilterMenu .Active, .PanelInfo .Active
+{
+background-color:#555;
+} 
+
+/*panel color active selected recent discussion*/
+div#Panel div.BoxFilter ul.FilterMenu li.Discussions a.Selected
+{
+color:orange;
+}
+
+
+/*link text color --most text on the site will use this */
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Menu text color for discussions*/
+.ItemDiscussion .Meta, .DataList .Meta {
+    color: #FFFFFF;
+    font-size: 11px;
+}
+
+
+
+/*link text color on hover */
+a:hover, a.TextColor:hover, a:hover .TextColor {
+    color: #7FFFC5;
+}
+
+/* creates hover color on discussion */
+body#vanilla_discussions_index.Vanilla div#Frame div#Body div#Content ul.DataList li:hover
+{
+background-color:#444;
+}
+
+/* creates hover  color on discussion- table layout */
+body#vanilla_discussions_index.Vanilla div#Frame div#Body div#Content div.DataTableWrap table.DataTable tbody tr:hover
+{
+background-color:#444;
+}
+
+/* creates hover color on category */
+body#vanilla_categories_index.Vanilla div#Frame div#Body div#Content ul.DataList li:hover
+{
+background-color:#444;
+}
+
+/* creates hover color on category - table layout */
+body#vanilla_categories_index.Vanilla div#Frame div#Body div#Content div.DataTableWrap table.DataTable tbody tr:hover
+{
+background-color:#444;
+}
+
+/*adds a nice little bar to separare discussion from comments */
+div.MessageList div.Discussion
+{
+border-bottom: solid 1px #78C5D0;
+padding-bottom:10px
+}
+
+
+#Panel ul {
+    background-color: #222;
+}
+
+/*adds hover color to filter menu */
+div.BoxFilter ul.FilterMenu li:hover
+{
+background-color:#444;
+color:#000;
+}
+ 
+ /*adds hover color to panel menu items */
+div#Panel div.Box ul.PanelInfo li:hover
+{
+background-color:#444;
+}
+
+/*panel color active selected category */
+div#Panel div.BoxFilter ul.FilterMenu li.AllCategories a:Active
+{
+color:yellow;
+}
+
+body.Profile #Content {
+   float: right;
+   margin: 0 0 40px;
+   width: 680px;
+}
+
+body.Profile #Panel {
+   float: left;
+   width: 250px;
+}
+
+/** Side Panel and Box **/
+.Box {
+   background: #000;
+   border-radius: 2px;
+   color: #fff;
+   padding: 6px 10px 20px;
+}
+
+.Box :first-child {
+   margin-top: 0;
+}
+.Box :last-child {
+   margin-bottom: 0;
+}
+
+/** Popup **/
+
+div.Popup h1, div.Popup h2 {
+   background: #38ABE3;
+   color: #fff;
+   margin: -10px -10px 10px;
+   padding: 5px 10px;
+}
+
+a.Close {
+   color: #fff;
+}
+
+/** Misc **/
+.ProfilePhotoLarge {
+    width: 250px;
+}
+
+/*item is read*/
+.Item.Read {
+    background: none repeat scroll 0 0 #555;
+    opacity: 0.9;
+}
+
+/* highlight for search */
+mark {
+    background: none repeat scroll 0 0 #008000;
+    color: inherit;
+    padding: 0 2px;
+}
+
+/*Line between comments*/
+div#Frame div#Body div#Content div.CommentsWrap div.DataBox ul.MessageList li div.Comment
+{
+border-bottom: solid 1px #78C5D0;
+padding:10px
+}
+
+/*Line between activity*/
+div#Frame div#Body div#Content ul.DataList .Item div.ItemContent
+{
+border-bottom: solid 1px #78C5D0;
+}
+
+/*Line between messages*/
+div#Frame div#Body div#Content div.DataListWrap ul.DataList li item
+{
+border-bottom: solid 1px #78C5D0;
+padding:10px;
+}
+
+/*option delete x*/
+div.Options a.Delete
+{
+color:yellow;
+}
+
+/*Link color message alert */
+div.CasualMessage  a
+{
+color:blue;
+}
+
+/*Link color message alert on hover */
+div.CasualMessage a:hover
+{
+color:red;
+}
+
+
+/*Color of people added to conveversation*/
+div.TextBoxWrapper ul.token-input-list li.token-input-token
+{
+color:#fff;
+}
+
+
+
+#Body {
+   width: 960px;
+   text-align: left;
+   margin: 15px auto 0;
+}
+.Search:after,
+div#Search:after {
+   content: ".";
+   display: block;
+   height: 0;
+   clear: both;
+   visibility: hidden;
+}
+body #Head h1 {
+   display: inline-block;
+   font-weight: bold;
+   margin: 0;
+   padding: 21px 10px 4px 0;
+   border: 0;
+}
+#Head h1 a span {
+   font-size: 24px;
+   color:#fff;
+}
+#Head .Search,
+#Head #Search {
+   position: absolute;
+   right: 0;
+   text-align: right;
+}
+#Head form {
+   float: right;
+   padding: 0;
+}
+#Head form input.InputBox {
+	vertical-align: top;
+   width: 200px;
+   border: 0;
+   padding: 4px;
+	margin: 0 6px 0 0;
+   color: #969696;
+   font-size: 13px;
+	background: #fff; 
+   -moz-border-radius: 2px;
+   -webkit-border: 2px;
+   border-bottom: 2px;
+	vertical-align: bottom;
+}
+#Head form input.Button {
+	font-size: 11px;
+	border: none;
+}
+.Menu {
+   width: 960px;
+   margin: 0 auto;
+   position: relative;
+   text-align: left;
+   vertical-align: bottom;
+}
+#Menu {
+   vertical-align: bottom;
+}
+#Menu li {
+   line-height: 27px;
+   float: left;
+   position: relative;
+   display: block;
+   list-style: none;
+   padding: 0;
+   margin: 0 4px 0 0;
+   font-weight: bold;
+   text-align: left;
+}
+* html #Menu li {
+	display: inline;
+}
+#Menu a {
+   border: 0;
+   text-decoration: none;
+   position: relative;
+	display: block;
+   padding: 0 7px;
+   white-space: nowrap;
+   font-size: 11px;
+   height: 28px;
+}
+* html #Menu a  {
+   display: inline;
+   padding: 6px 10px;
+}
+#Menu li.NonTab,
+#Menu li.NonTab a {
+   font-weight: normal;
+}
+#Menu ul {
+   background: #38abe3;
+}
+#Menu a {
+   color: #fff;
+}
+#Menu a:hover {
+   color: #fff;
+   text-decoration: underline;
+}
+#Menu .Alert {
+	text-shadow: none;
+   background: #f2fcff;
+   color: #299fc7;
+}
+#Foot div {
+	width: 960px;
+	padding: 6px 0;
+	margin: 20px auto 0;
+	text-align: left;
+}
+
+/*custom for coinforum -improvements*/
+div.Message blockquote
+{
+background-color:#A3A3A3;
+color: #000;
+padding:10px;
+}
+ 
+div.Message blockquote a
+{
+color: blue;
+}
+ 
+.Pager .Highlight {
+    color: #FFFFFF;
+}
+
+li.Gender {
+  display:none;
+}
