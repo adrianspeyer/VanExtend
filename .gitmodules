@@ -1,0 +1,4 @@
+﻿[submodule "Plugins/Adblock"]
+	path = Plugins/Adblock
+	url = git://github.com/adriansonline/VanExtend.git
+        ignore = dirty
