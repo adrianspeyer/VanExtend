@@ -4,3 +4,12 @@ Allows you to hide comments to non-members (or roles/permissions you set to be a
 
 
 **Requires Vanilla 2.1+
+
+
+To Do - -Implement ideas from Lincoln:
+
+<ul>
+<li>Make a Vanilla.Comment.View permission per category that defaults to Vanilla.Discussion.View; and make the replacement string translatable</li>
+
+<li> Add a setting that says "Users without permission to view comments may only see discussion excerpt" and implement that too</li>
+</ul>
