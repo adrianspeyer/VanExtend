@@ -1,0 +1,8 @@
+a#RedditAuth img {
+    vertical-align: top;
+}
+
+form#Form_User_SignIn div div.Entry div.Methods div.Method a#RedditAuth img
+{
+width: 210px;
+}

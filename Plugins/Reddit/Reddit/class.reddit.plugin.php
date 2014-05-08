@@ -4,7 +4,7 @@
 $PluginInfo['Reddit'] = array(
     'Name'                 => 'Reddit Social Connect',
     'Description'          => 'Users may sign into your site using their Reddit account.',
-    'Version'              => '0.1.2',
+    'Version'              => '0.1.1',
     'Author'               => "Adrian Speyer",
     'RequiredApplications' => array('Vanilla' => '2.1b2'),
     'RequiredTheme'        => false,
@@ -18,6 +18,7 @@ $PluginInfo['Reddit'] = array(
     'SocialConnect'        => false,
     'RequiresRegistration' => true
 );
+
 
 /**
  * Include Garden's core OAuth library
@@ -41,7 +42,16 @@ require_once PATH_LIBRARY . '/vendors/oauth/OAuth.php';
  * @author Kasper Isager <kasperisager@gmail.com>
  */
 class RedditPlugin extends Gdn_Plugin {
-    /// Constants ///
+    
+	/**
+Add CSS to work with version 2.2
+**/
+public function AssetModel_StyleCss_Handler($Sender) {
+      $Sender->AddCssFile('reddit.css', 'plugins/Reddit');
+   }
+	
+	
+	/// Constants ///
 
     const ProviderKey = 'Reddit';
 
@@ -407,7 +417,7 @@ class RedditPlugin extends Gdn_Plugin {
         $ShareUrl = 'http://www.reddit.com/submit?url=' . Url($Url, true);
 
         // Simple share button image
-        $ShareImg = '<img src="http://www.reddit.com/static/spreddit1.gif" alt="submit to reddit" border="0">';
+        $ShareImg = '<img src="https://www.coinforum.ca/images/spreddit1.gif" alt="submit to reddit" border="0">';
 
         // Build React button
         $ReactButton  = ' ';
