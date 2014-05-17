@@ -17,26 +17,84 @@ $PluginInfo['Dyslexia'] = array(
    'AuthorUrl' => 'http://adrianspeyer.com'
 );
 
-
 class DyslexiaPlugin extends Gdn_Plugin {
 
-   public function ProfileController_Dyslexia_Create($Sender) { 
-      $Expiration = time() - 172800;
-      $Expire = 0;
-      $UserID = ((Gdn::Session()->IsValid()) ? Gdn::Session()->UserID : 0);
-      $KeyData = $UserID."-{$Expiration}";
-      Gdn_CookieIdentity::SetCookie('DyslexiaFont', $KeyData, array($UserID, $Expiration, 'dyslexia'), $Expire);
-      Redirect("/", 302);
+
+ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
+      if (!Gdn::Session()->CheckPermission('Garden.SignIn.Allow'))
+         return;
+
+      $SideMenu = $Sender->EventArguments['SideMenu'];
+      $ViewingUserID = Gdn::Session()->UserID;
+
+      if ($Sender->User->UserID == $ViewingUserID) {
+         $SideMenu->AddLink('Options', Sprite('').' '.T('Dyslexia Settings'), '/profile/dyslexia', FALSE, array('class' => 'Popup'));
+      } else {
+         $SideMenu->AddLink('Options', Sprite('').' '.T('Dyslexia Settings'), UserUrl($Sender->User, '', 'dyslexia'), 'Garden.Users.Edit', array('class' => 'Popup'));
+      }
    }
 
-   
+  public function ProfileController_Dyslexia_Create($Sender) {
+      $Sender->Permission('Garden.SignIn.Allow');
+      $Sender->Title("Dyslexia Settings");
+
+      $Args = $Sender->RequestArgs;
+      if (sizeof($Args) < 2)
+         $Args = array_merge($Args, array(0, 0));
+      elseif (sizeof($Args) > 2)
+         $Args = array_slice($Args, 0, 2);
+
+      list($UserReference, $Username) = $Args;
+
+      $Sender->GetUserInfo($UserReference, $Username);
+      $UserPrefs = Gdn_Format::Unserialize($Sender->User->Preferences);
+      if (!is_array($UserPrefs))
+         $UserPrefs = array();
+
+      $UserID = $ViewingUserID = Gdn::Session()->UserID;
+
+      if ($Sender->User->UserID != $ViewingUserID) {
+         $Sender->Permission('Garden.Users.Edit');
+         $UserID = $Sender->User->UserID;
+      }
+
+      $Sender->SetData('ForceEditing', ($UserID == Gdn::Session()->UserID) ? FALSE : $Sender->User->Name);
+      $DyslexiaFont = GetValue('Dyslexia.Font', $UserPrefs, '0');
+      $Sender->Form->SetValue('DyslexiaFont', $DyslexiaFont);
+
+      $Sender->SetData('DyslexiaFontOptions', array(
+          '0' => "Disabled",
+          '1' => 'Enabled'
+      ));
+
+		
+		 // If seeing the form for the first time...
+      if ($Sender->Form->IsPostBack()) {
+         $Dyslexia = $Sender->Form->GetValue('DyslexiaFont', '0');
+         if ($Dyslexia  != $DyslexiaFont) {
+            Gdn::UserModel()->SavePreference($UserID, 'Dyslexia.Font', $Dyslexia);
+            $Sender->InformMessage(T("Your changes have been saved."));
+         }
+      } 
+
+      $Sender->Render('dyslexia', '', 'plugins/Dyslexia');
+	} 
+    
    public function Base_Render_Before($Sender) {
-	$Sender->AddAsset('Foot', Wrap(Anchor(T('Enable Dyslexia Friendly Font'), '/profile/dyslexia/1'),'div class ="DyslexiaOptions"'),'DyslexiaFont');	
-	$Dyslexia = Gdn_CookieIdentity::GetCookiePayload('DyslexiaFont');
-	if ($Dyslexia !== FALSE){
-	$Sender->AddCssFile('dyslexic.css', 'plugins/Dyslexia');
-	$Sender->AddAsset('Head', '<style>.DyslexiaOptions { padding-left: 10px; color: #7C8589;} .Dashboard .DyslexiaOptions { display: none; }</style>');
-	     }
-	}	
- 
+   
+   if (!Gdn::Session()->IsValid())
+         return;
+
+      $UserPrefs = Gdn_Format::Unserialize(Gdn::Session()->User->Preferences);
+      if (!is_array($UserPrefs))
+         $UserPrefs = array();
+
+      $DyslexiaFont = GetValue('Dyslexia.Font', $UserPrefs, '1');
+
+		if ($DyslexiaFont != "0")
+		{	
+		$Sender->AddCssFile('dyslexic.css', 'plugins/Dyslexia');  	
+		}
+	}
+   
 }
