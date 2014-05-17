@@ -1,12 +1,10 @@
 <?php if (!defined('APPLICATION')) exit();
 
-/* Mucho thanks to Kasper & Lincoln
-*/
-
+// Mucho thanks to Kasper
 $PluginInfo['HideComments'] = array(
    'Name' => 'Hide Comments',
    'Description' => 'This allows forum owners to hide comments from some, but allows discussion to be seen.',
-   'Version' => '1.1',
+   'Version' => '1.0',
    'RegisterPermissions' => array('Plugins.HideComments.View' => 1),
    //'RegisterPermissions' => array('Vanilla.Comments.View' => 'Vanilla.Discussions.View'),
    'Author' => "Adrian",
@@ -19,10 +17,24 @@ $PluginInfo['HideComments'] = array(
 class HideCommentsPlugin extends Gdn_Plugin {
 
 	public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
-	  //$canviewcomments = Gdn::Session()->CheckPermission('Vanilla.Comments.View');
-	  $canviewcomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	    if (!$canviewcomments) { 
-			$Sender->EventArguments['Comment']->FormatBody = Anchor(T('This comment can be viewed by members only'), Url('/entry/signin'));
-		}
-	 }   
+	//$canviewcomments = Gdn::Session()->CheckPermission('Vanilla.Comments.View');
+	$canviewcomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+	if (!$canviewcomments) { 
+	
+	echo '<style>
+	div.CommentsWrap{display:none;} 
+	div.note.Closed.SignInOrRegister{display:none;}
+	div.MessageForm {display:none;}
+	</style>';
+	$Sender->EventArguments['Comment']->FormatBody = T('This comment can be viewed by those with permission');
+	}}
+	
+	public function DiscussionController_BeforeCommentForm_Handler($Sender) {
+	if (!$canviewcomments) { 	
+	echo "<div class='Foot Closed'><b>Comments are not open to you</b></div>";
+	}}
+	
+	
+	
+	
 }
