@@ -18,12 +18,13 @@ public function UserController_BeforeDeleteContent_Handler($Sender){
 $isHomeAlone = Gdn::Session()->CheckPermission('Plugins.HomeAlone.Manage');
 if ($isHomeAlone) {
  $this->Permission('Garden.Moderation.Manage');
+     $UserModel = Gdn::UserModel();
      $User = $UserModel->GetID($UserID);
       if (GetValue('Admin', $User) == 2)
          throw ForbiddenException("@You may not delete content of a System user.");
       elseif (GetValue('Admin', $User))
          throw ForbiddenException("@You may not delete content of an Admin.");	 
-}}
-   public function Setup() {
-   }    
+         }  
+      }
+   
 }
