@@ -2,7 +2,7 @@
 
 $PluginInfo['HomeAlone'] = array(
    'Name' => 'Home Alone',
-   'Description' => 'This plugin creates a new permission "HomeAlone" which when used with permissions moderation.manage, esnures all content of the Admins cannot be deleted from profile page.',
+   'Description' => 'This plugin creates a new permission "HomeAlone" which when used with permissions moderation.manage, ensures all content of the Admins cannot be deleted from their profile page.',
    'Version' => '1.0',
    'RegisterPermissions' => array('Plugins.HomeAlone.Manage' => 1),
    'Author' => "Adrian",
