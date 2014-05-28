@@ -22,10 +22,8 @@ class HideCommentsPlugin extends Gdn_Plugin {
 			}
 	}
 	
-	public function DiscussionController_BeforeCommentsRender_Handler(&$sender, $args) {
-		
+	public function DiscussionController_BeforeCommentsRender_Handler(&$Sender, $Args) {
 		// instead of css solution	
-	
 	}
 	
 	
