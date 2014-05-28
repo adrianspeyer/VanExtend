@@ -14,34 +14,50 @@ $PluginInfo['HideComments'] = array(
 
 class HideCommentsPlugin extends Gdn_Plugin {
 
-	public function DiscussionController_AfterDiscussion_Handler($Sender) { 
-	$canviewcomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	if (!$canviewcomments) { 
-	echo "<div class='Foot Closed'>".(T('This comment can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
-	}}
+        public function DiscussionController_AfterDiscussion_Handler($Sender) { 
+
+		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+		if ($hidecomments) { 
+			echo "<div class='Foot Closed'>".(T('This comment can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
+			}
+	}
 	
-	public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
-	$canviewcomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	if (!$canviewcomments) { 
-	$Session = Gdn::Session();
-	$Controller = GDN::Controller();
-	unset($Controller->EventArguments['Comment']->FormatBody);
+	public function DiscussionController_BeforeCommentsRender_Handler(&$sender, $args) {
+		
+		// instead of css solution	
+	
+	}
+	
+	
+       public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
+	
+		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+	   
+		  	if ($hidecomments) { 
+			$Session = Gdn::Session();
+		        $Controller = GDN::Controller();
+			unset($Controller->EventArguments['Comment']->FormatBody);
+	
+			//find way to do without css
+			echo '<style>
+			div.CommentsWrap{display:none;}
+			div.Note.Closed{display:none;}
+			div.note.Closed.SignInOrRegister{display:none;}
+			div.MessageForm {display:none;}
+			</style>';
+	     		}
+	
+   	}
 
-	//find way to do wihout css
-	echo '<style>
-	div.CommentsWrap{display:none;}
-	div.Note.Closed{display:none;}
-	div.note.Closed.SignInOrRegister{display:none;}
-	div.MessageForm {display:none;}
-	</style>';
-	}}
-
-	public function DiscussionController_BeforeDiscussionRender_Handler($Sender, $Args) {
-	$canviewcomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	if (!$canviewcomments) { 
-	  $Discussion = $Sender->Data('Discussion');
-         SetValue('Closed', $Discussion, 1);  
-         $Sender->SetData('Discussion', $Discussion);
-	}}	
+      public function DiscussionController_BeforeDiscussionRender_Handler($Sender, $Args) {
+	
+	 	$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+	
+			if ($hidecomments) { 
+			 $Discussion = $Sender->Data('Discussion');
+		         SetValue('Closed', $Discussion, 1);  
+		         $Sender->SetData('Discussion', $Discussion);
+			}
+	}	
 	
 }
