@@ -21,11 +21,11 @@ class DebugitPlugin extends Gdn_Plugin {
 	}
 }
    
-   public function Setup() {
+	public function Setup() {
    }
 
 	public function OnDisable() {
-    SaveToConfig('Debug', FALSE);
+    	SaveToConfig('Debug', FALSE);
    }   
-   
+    
 }
