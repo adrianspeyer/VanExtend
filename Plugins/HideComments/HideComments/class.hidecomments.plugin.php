@@ -3,7 +3,7 @@
 $PluginInfo['HideComments'] = array(
    'Name' => 'Hide Comments',
    'Description' => 'This allows forum owners to hide comments from some, but allows discussion to be seen.',
-   'Version' => '1.1',
+   'Version' => '1.2',
    'RegisterPermissions' => array('Plugins.HideComments.View' => 0),
    'Author' => "Adrian",
    'AuthorUrl' => 'http://www.vanillaforums.com',
