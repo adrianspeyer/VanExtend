@@ -15,11 +15,13 @@ $PluginInfo['HideComments'] = array(
 class HideCommentsPlugin extends Gdn_Plugin {
 
         public function DiscussionController_AfterDiscussion_Handler($Sender) { 
-
+		
 		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-		if ($hidecomments) { 
+		if (!CheckPermission('Garden.Moderation.Manage')){
+		  if (!Gdn::Session()->IsValid() || $hidecomments) { 
 			echo "<div class='Foot Closed'>".(T('This comment can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
 			}
+		}	
 	}
 	
 	public function DiscussionController_BeforeCommentsRender_Handler(&$Sender, $Args) {
@@ -28,13 +30,13 @@ class HideCommentsPlugin extends Gdn_Plugin {
 	
 	
        public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
-	
+		
 		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	   
-		  	if ($hidecomments) { 
-			$Session = Gdn::Session();
+		if (!CheckPermission('Garden.Moderation.Manage')){
+		   if (!Gdn::Session()->IsValid() || $hidecomments) { 
+		  	 $Session = Gdn::Session();
 		        $Controller = GDN::Controller();
-			unset($Controller->EventArguments['Comment']->FormatBody);
+			     unset($Controller->EventArguments['Comment']->FormatBody);
 	
 			//find way to do without css
 			echo '<style>
@@ -44,18 +46,20 @@ class HideCommentsPlugin extends Gdn_Plugin {
 			div.MessageForm {display:none;}
 			</style>';
 	     		}
+			}
 	
    	}
 
       public function DiscussionController_BeforeDiscussionRender_Handler($Sender, $Args) {
 	
 	 	$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-	
-			if ($hidecomments) { 
+		if (!CheckPermission('Garden.Moderation.Manage')){
+		    if (!Gdn::Session()->IsValid() || $hidecomments) { 
 			 $Discussion = $Sender->Data('Discussion');
 		         SetValue('Closed', $Discussion, 1);  
 		         $Sender->SetData('Discussion', $Discussion);
 			}
-	}	
-	
+		}
+		
+	}
 }
