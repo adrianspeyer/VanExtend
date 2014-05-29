@@ -19,17 +19,24 @@ class HideCommentsPlugin extends Gdn_Plugin {
 		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
 		if (!CheckPermission('Garden.Moderation.Manage')){
 		  if (!Gdn::Session()->IsValid() || $hidecomments) { 
-			echo "<div class='Foot Closed'>".(T('This comment can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
+			echo "<div class='Foot Closed'>".(T('Comment on this discussion can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
 			}
 		}	
 	}
 	
 	public function DiscussionController_BeforeCommentsRender_Handler(&$Sender, $Args) {
-		// instead of css solution	
-	}
-	
-	
-       public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
+		// instead of css solution
+			/*
+			 $Comments = $Sender->Data('Comments');
+			 if ($Comments) {
+			 foreach ($Comments as $Comment) {
+				$Comment->Body = "";
+				}
+			}
+			*/
+		}
+       
+	public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
 		
 		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
 		if (!CheckPermission('Garden.Moderation.Manage')){
@@ -45,13 +52,11 @@ class HideCommentsPlugin extends Gdn_Plugin {
 			div.note.Closed.SignInOrRegister{display:none;}
 			div.MessageForm {display:none;}
 			</style>';
-	     		}
+				}
 			}
-	
    	}
 
       public function DiscussionController_BeforeDiscussionRender_Handler($Sender, $Args) {
-	
 	 	$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
 		if (!CheckPermission('Garden.Moderation.Manage')){
 		    if (!Gdn::Session()->IsValid() || $hidecomments) { 
@@ -60,6 +65,5 @@ class HideCommentsPlugin extends Gdn_Plugin {
 		         $Sender->SetData('Discussion', $Discussion);
 			}
 		}
-		
 	}
 }
