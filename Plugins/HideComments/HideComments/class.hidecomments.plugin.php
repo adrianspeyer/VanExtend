@@ -46,14 +46,14 @@ class HideCommentsPlugin extends Gdn_Plugin {
 		if (!CheckPermission('Garden.Moderation.Manage')){
 		   if (!Gdn::Session()->IsValid() || $hidecomments) { 
 	
-			//clean up css
-			echo '<style>
-			div.CommentsWrap{display:none;}
-			div.Note.Closed{display:none;}
-			div.note.Closed.SignInOrRegister{display:none;}
-			div.MessageForm {display:none;}
-			</style>';
-					}
-				}
+				//clean up css
+				echo '<style>
+				div.CommentsWrap{display:none;}
+				div.Note.Closed{display:none;}
+				div.note.Closed.SignInOrRegister{display:none;}
+				div.MessageForm {display:none;}
+				</style>';
 			}
+		}
+	}
 }
