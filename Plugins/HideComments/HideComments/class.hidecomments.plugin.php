@@ -38,7 +38,11 @@ class HideCommentsPlugin extends Gdn_Plugin {
 					div.MessageForm {display:none;}
 					</style>';
 					
-					//$this->GetView('comments.php')
+					// Created blanks view of comments.php
+					//$this->GetView('comments.php'); // -- did not work
+					//$Sender->Render($this->GetView('comments.php')); //-- whole site show up in loop
+					//$this->Render();	//-- Add with line above and comment is at top, rest of site below.
+					
 				}
 			}
 		}
