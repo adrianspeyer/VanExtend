@@ -19,30 +19,68 @@ class HideCommentsPlugin extends Gdn_Plugin {
 		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
 		if (!CheckPermission('Garden.Moderation.Manage')){
 		  if (!Gdn::Session()->IsValid() || $hidecomments) { 
-			echo "<div class='Foot Closed'>".(T('Comments on this discussion can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
+			echo "<div class='Foot Closed'>".(T('Comment on this discussion can be viewed by members only. ')).Anchor(T('Apply for membership.'), Url('../entry/signin'));".</div>";
 			}
 		}	
 	}
-	
+		
 	public function DiscussionController_BeforeCommentDisplay_Handler($Sender, $Args) {
-	$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
-		if (!CheckPermission('Garden.Moderation.Manage')){
-		  if (!Gdn::Session()->IsValid() || $hidecomments) { 
-			$Args['Comment'] ='';
-			$Args['Author'] ='';
+		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+			if (!CheckPermission('Garden.Moderation.Manage')){
+				if (!Gdn::Session()->IsValid() || $hidecomments) { 
+					$Args['Comment'] ='';
+					$Args['Author'] ='';
+
+					echo '<style>
+					div.CommentsWrap{display:none;}
+					div.Note.Closed{display:none;}
+					div.note.Closed.SignInOrRegister{display:none;}
+					div.MessageForm {display:none;}
+					</style>';
+					
+					//$this->GetView('comments.php')
+				}
+			}
+		}
+	
+	
+	/*
+	public function DiscussionController_BeforeCommentsRender_Handler(&$Sender, $Args) {
+		// instead of css solution
+			/*
+			 $Comments = $Sender->Data('Comments');
+			 if ($Comments) {
+			 foreach ($Comments as $Comment) {
+				$Comment->Body = "";
+				}
+			}
 			
+		}
+
+	*/
+
+	/*  
+	public function DiscussionController_AfterCommentFormat_Handler($Sender) { 
+		
+		$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
+		if (!CheckPermission('Garden.Moderation.Manage')){
+		   if (!Gdn::Session()->IsValid() || $hidecomments) { 
+		  	 $Session = Gdn::Session();
+		        $Controller = GDN::Controller();
+			     unset($Controller->EventArguments['Comment']->FormatBody);
+	
+			//find way to do without css
 			echo '<style>
 			div.CommentsWrap{display:none;}
 			div.Note.Closed{display:none;}
 			div.note.Closed.SignInOrRegister{display:none;}
 			div.MessageForm {display:none;}
 			</style>';
-			
 				}
 			}
-		}	
-       
-
+   	}
+*/
+	
       public function DiscussionController_BeforeDiscussionRender_Handler($Sender, $Args) {
 	 	$hidecomments = Gdn::Session()->CheckPermission('Plugins.HideComments.View');
 		if (!CheckPermission('Garden.Moderation.Manage')){
