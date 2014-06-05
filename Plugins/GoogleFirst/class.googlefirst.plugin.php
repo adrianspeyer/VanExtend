@@ -58,7 +58,7 @@ class GoogleFirstPlugin extends Gdn_Plugin {
 		SaveToConfig('Garden.PrivateCommunity',TRUE);
 		}
 		
-		if ($_COOKIE['gfcf'] >=5 && $_COOKIE['gfcf']<=6){
+		if ($_COOKIE['gfcf'] >5 && $_COOKIE['gfcf']=6){
 		if (!Gdn::Session()->IsValid()) { 
 		echo '<script>alert("Your free views are finished. Please signin or apply for a membership");</script>';
 		  }
