@@ -17,7 +17,6 @@ class GoogleFirstPlugin extends Gdn_Plugin {
  
 	public function Gdn_Dispatcher_AppStartup_Handler($Sender) {
 		//Check  if user can view discussions	
-		if (!Gdn::Session()->IsValid()) { 
 		if (Gdn::Session()->CheckPermission('Vanilla.Discussions.View')){
 		
 		//Googlebot has full access
@@ -38,37 +37,34 @@ class GoogleFirstPlugin extends Gdn_Plugin {
 		//User comes from Google gets access, but cookie is set
 		elseif(isset($_SERVER['HTTP_REFERER'])) {
 			if (strpos($_SERVER['HTTP_REFERER'], 'google') == TRUE){
-			setcookie('gfcf', 0, time() + (60 * 60),'/','cmgr.info');	
-		    SaveToConfig('Garden.PrivateCommunity',FALSE);
+			setcookie('gfcf', true, time() + (60 * 60),'/','cmgr.info');	
+		     SaveToConfig('Garden.PrivateCommunity',FALSE);
 				}
 			}
 		
 		else
 		//Otherwise site is shut and require login
          SaveToConfig('Garden.PrivateCommunity',TRUE);
-		 }
 		}
 		
 		//Now lets look at the cookie set by Google Visits and increments pageviews
-		if (!Gdn::Session()->IsValid()) { 
 		if(isset($_COOKIE['gfcf'])) {
 		$fcfvalue = ++$_COOKIE['gfcf'];
-		setcookie('gfcf',$fcfvalue, time() + (60 * 60),'/','cmgr.info');
-		}
+		setcookie('gfcf',$fcfvalue, time() + (60 * 60));
 		}
 		
 		//Once Google vistor hit 5 visits
-		if (!Gdn::Session()->IsValid()) { 
 		if ($_COOKIE['gfcf'] >5){
 		SaveToConfig('Garden.PrivateCommunity',TRUE);
-			}
 		}
 		
+		/* message when 5 free is done
 		if ($_COOKIE['gfcf'] >5 && $_COOKIE['gfcf']=6){
 		if (!Gdn::Session()->IsValid()) { 
 		echo '<script>alert("Your free views are finished. Please signin or apply for a membership");</script>';
 		  }
 		 }
+		*/
 		 
 		 if (Gdn::Session()->IsValid()) { 
 		 unset($_COOKIE['gfcf']);
