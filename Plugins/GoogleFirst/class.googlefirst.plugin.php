@@ -7,7 +7,7 @@ Based on PrivateCommunity created by Mark O'Sullivan
 $PluginInfo['GoogleFirst'] = array(
    'Name' => 'Google First',
    'Description' => 'Requires Private community. Lets the community be searched by Google and implements  <a href="http://googlewebmastercentral.blogspot.ca/2008/10/first-click-free-for-web-search.html"/>Google First Click Free</a>. Please note saavy users can still spoof in without registering.',
-   'Version' => '1.11',
+   'Version' => '1.0',
    'Author' => "Adrian Speyer",
    'RequiredPlugins' => array('PrivateCommunity' => '1.0'),
 );
@@ -63,11 +63,13 @@ class GoogleFirstPlugin extends Gdn_Plugin {
 		echo '<script>alert("Your free views are finished. Please signin or apply for a membership");</script>';
 		  }
 		 }
+		 
+		 if (Gdn::Session()->IsValid()) { 
+		 unset($_COOKIE['gfcf']);
+		 }
+		 
 		}
-	  
-	  
-	  
-	   
+
     public function Setup() {
       // No setup required
 		}  
