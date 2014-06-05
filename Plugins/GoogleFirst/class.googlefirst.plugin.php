@@ -17,6 +17,7 @@ class GoogleFirstPlugin extends Gdn_Plugin {
  
 	public function Gdn_Dispatcher_AppStartup_Handler($Sender) {
 		//Check  if user can view discussions	
+		if (!Gdn::Session()->IsValid()) { 
 		if (Gdn::Session()->CheckPermission('Vanilla.Discussions.View')){
 		
 		//Googlebot has full access
@@ -45,17 +46,22 @@ class GoogleFirstPlugin extends Gdn_Plugin {
 		else
 		//Otherwise site is shut and require login
          SaveToConfig('Garden.PrivateCommunity',TRUE);
+		 }
 		}
 		
 		//Now lets look at the cookie set by Google Visits and increments pageviews
+		if (!Gdn::Session()->IsValid()) { 
 		if(isset($_COOKIE['gfcf'])) {
 		$fcfvalue = ++$_COOKIE['gfcf'];
 		setcookie('gfcf',$fcfvalue, time() + (60 * 60));
 		}
+		}
 		
 		//Once Google vistor hit 5 visits
+		if (!Gdn::Session()->IsValid()) { 
 		if ($_COOKIE['gfcf'] >5){
 		SaveToConfig('Garden.PrivateCommunity',TRUE);
+			}
 		}
 		
 		if ($_COOKIE['gfcf'] >5 && $_COOKIE['gfcf']=6){
