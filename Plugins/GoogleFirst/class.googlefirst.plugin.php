@@ -1,9 +1,8 @@
 <?php if (!defined('APPLICATION')) exit();
 /*
-Based on PrivateCommunity created by Mark O'Sullivan
+Requires PrivateCommunity created by Mark O'Sullivan
 */
 
-// Define the plugin:
 $PluginInfo['GoogleFirst'] = array(
    'Name' => 'Google First',
    'Description' => 'Requires Private community. Lets the community be searched by Google and implements  <a href="http://googlewebmastercentral.blogspot.ca/2008/10/first-click-free-for-web-search.html"/>Google First Click Free</a>. Please note saavy users can still spoof in without registering.',
