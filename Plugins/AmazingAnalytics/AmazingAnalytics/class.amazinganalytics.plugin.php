@@ -9,6 +9,7 @@ $PluginInfo['AmazingAnalytics'] = array(
    'RequiredTheme' => FALSE, 
    'RequiredPlugins' => FALSE,
    'HasLocale' => FALSE,
+   'MobileFriendly' => TRUE,
    'SettingsPermission' => 'Garden.Settings.Manage',
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://www.vanillaforums.com'
