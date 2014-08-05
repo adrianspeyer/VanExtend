@@ -2,7 +2,7 @@
 
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
-	'Description' => 'Adds links to "hidden" links for upgrading, refresing or modifying your Vanilla Install .',
+	'Description' => 'Adds links to "hidden" links for upgrading, refreshing or modifying your Vanilla Install .',
 	'Version' => '1.0',
 	'SettingsPermission' => 'Garden.AdminUser.Only',
 	'Author' => 'Adrian Speyer'
