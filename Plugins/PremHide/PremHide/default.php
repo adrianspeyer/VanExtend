@@ -1,7 +1,7 @@
 <?php 
 $PluginInfo['PremHide'] = array(
    'Description' => 'This plugin allows you to insert Premium Content which will be hidden with [prem][/prem] shortcodes.',
-   'Version' => '1.0.6',
+   'Version' => '1.0.7',
    'MobileFriendly' => TRUE,
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://www.adrianspeyer.com'
@@ -21,4 +21,9 @@ class PremHidePlugin extends Gdn_Plugin {
         }  
         $Sender->EventArguments['Object']->FormatBody = $context;
     }
-	}
+
+	//suggestion by peregrine
+   public function PostController_AfterCommentFormat_Handler($Sender) {
+    $this->DiscussionController_AfterCommentFormat_Handler($Sender);
+   }
+}
