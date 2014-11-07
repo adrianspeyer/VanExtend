@@ -214,24 +214,24 @@ margin-top: -28px;
 .MeMenu .Sprite16 {
     background-image: url("./images/sprites.png");
 }
-.SpNotifications {
-    background-position: -32px -212px;
-}
-.SpInbox {
-    background-position: -16px -228px;
-}
-.SpBookmarks {
-    background-position: -80px -245px;
-}
-.SpDashboard {
-    background-position: 0 -212px;
-}
-.SpSignOut {
-    background-position: -2px -102px;
+.SpDashboard, .SpOptions {
+background-position: 0 -212px !important;
 }
 
-.SpOptions {
-    background-position: 0px -212px;
+.SpInbox {
+background-position: -16px -228px !important;
+}
+
+.SpNotifications {
+background-position: -32px -212px !important;
+}
+
+.SpBookmarks {
+background-position: -80px -245px !important;
+}
+
+.SpSignOut {
+background-position: -2px -102px !important;
 }
 
 #Panel {
