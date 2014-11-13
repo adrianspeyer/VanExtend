@@ -4,7 +4,7 @@
 $PluginInfo['AdvancedPiwik'] = array(
    'Name' => 'Advanced Piwik',
    'Description' => 'Adds custom variables to track: categories, if user is logged in,role type and even username (optional).Please Note:<b>This plugin does not install Piwik tracker. You must have Piwik Async Tracking code already installed</b>.',
-   'Version' => '1.0.0',
+   'Version' => '1.0.1',
    'RequiredTheme' => FALSE, 
    'RequiredPlugins' => FALSE,
    'HasLocale' => FALSE,
@@ -78,9 +78,10 @@ _paq.push(['setCustomVariable',1,'UserType','Logged In','visit']); ";
 		 if (isset($Category)) {
 		$catid = $Sender->CategoryID;
 		$cname = $Category[$catid]['Name'];
+		if ($cname != ''){
 echo "
 _paq.push(['setCustomVariable',2,'Category','".$cname."','page']);";
-       }
+       }}
 
 //Gets you membername
 
