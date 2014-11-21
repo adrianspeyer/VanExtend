@@ -36,7 +36,7 @@ class GoogleFirstPlugin extends Gdn_Plugin {
 		//User comes from Google gets access, but cookie is set
 		elseif(isset($_SERVER['HTTP_REFERER'])) {
 			if (strpos($_SERVER['HTTP_REFERER'], 'google') == TRUE){
-			setcookie('gfcf', true, time() + (60 * 60),'/','cmgr.info');	
+			setcookie('gfcf', true, time() + (60 * 60),'/');	
 		     SaveToConfig('Garden.PrivateCommunity',FALSE);
 				}
 			}
