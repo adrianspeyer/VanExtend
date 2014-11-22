@@ -15,11 +15,6 @@ $PluginInfo['ReportSpam'] = array(
 class ReportSpamPlugin extends Gdn_Plugin {
     public function Base_DiscussionOptions_Handler($Sender, $Args) {
         if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-            //API Key
-            $SFSkey = C('Plugins.ReportSpam.APIKey');
-            if (!$SFSkey) {
-                $Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
-            }
             $Sender->EventArguments['DiscussionOptions']['ReportSpam'] = array(
                 'Label' => T('Report Forum Spam'),
                 'Url' => '/discussion/SFSOptions/discussion/' . $Args['Discussion']->DiscussionID,
@@ -41,9 +36,12 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
     public function DiscussionController_SFSOptions_Create($Sender, $Args) {
         if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-
-            //APIkey
+			
+			 //API Key
             $SFSkey = C('Plugins.ReportSpam.APIKey');
+            if (!$SFSkey) {
+                $Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
+            }
 
             //get arguments
             if (count($Sender->RequestArgs) != 2) {
