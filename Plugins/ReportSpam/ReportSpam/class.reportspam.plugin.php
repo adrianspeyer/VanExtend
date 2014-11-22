@@ -36,56 +36,56 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
 
     public function DiscussionController_SFSOptions_Create($Sender, $Args) {
-        if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-			
-			 //API Key
-            $SFSkey = C('Plugins.ReportSpam.APIKey');
-            if (!$SFSkey) {
-                $Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
-            }
+		if (!Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
+			return;
+		}			
+		 
+		 //API Key
+		$SFSkey = C('Plugins.ReportSpam.APIKey');
+		if (!$SFSkey) {
+			$Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
+		}
 
-            //get arguments
-            if (count($Sender->RequestArgs) != 2) {
-                throw new Gdn_UserException('Bad Request', 400);
-            }
+		//get arguments
+		if (count($Sender->RequestArgs) != 2) {
+			throw new Gdn_UserException('Bad Request', 400);
+		}
 
-            list($context, $contextID) = $Sender->RequestArgs;
-            $content = getRecord($context, $contextID);
-            $Sender->setData('content', $content);
-            $Sender->Form = new Gdn_Form();
+		list($context, $contextID) = $Sender->RequestArgs;
+		$content = getRecord($context, $contextID);
+		$Sender->setData('content', $content);
+		$Sender->Form = new Gdn_Form();
 
-            if ($Sender->Form->AuthenticatedPostBack() === true) {
-                if ($Sender->Form->ErrorCount() == 0) {
-                    $FormValues = $Sender->Form->FormValues();
-                    $contextID = val('contextID', $FormValues);
-                    $context = val('context', $FormValues);
-                    $content = getRecord($context, $contextID);
-                    //var_dump('SampleData:', $content);
-                    $this->PostToHost(
-                        "username=" . urlencode($content['InsertName']) . "&ip_addr=" . urlencode(
-                            $content['InsertIPAddress']
-                        ) . "&email=" . urlencode(
-                            $content['InsertEmail']
-                        ) . "&api_key=" . $SFSkey . "&evidence=" . urlencode($content['Body'])
-                    );
-                }
-            } else {
-                $Sender->Form->AddHidden('context', $context);
-                $Sender->Form->AddHidden('contextID', $contextID);
-            }
+		$UserModel = Gdn::UserModel();
+			$User = $UserModel->GetID($content['InsertUserID']);
+			if ($UserModel->CheckPermission($User, 'Garden.Moderation.Manage')) { 
+			$Sender->Form->AddError(T('You cannot report a moderator.'));	
+			}
+				
+		if ($Sender->Form->AuthenticatedPostBack() === true) {
+			if ($Sender->Form->ErrorCount() == 0) {
+				$FormValues = $Sender->Form->FormValues();
+				$contextID = val('contextID', $FormValues);
+				$context = val('context', $FormValues);
+				$content = getRecord($context, $contextID);
+				$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body']);
+			    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
+			}
+		} else {
+			$Sender->Form->AddHidden('context', $context);
+			$Sender->Form->AddHidden('contextID', $contextID);
+		}
 
-            $Title = t('Stop Forum Spam Report');
-            $Data = array(
-                'Title' => $Title
-            );
+		$Title = t('Stop Forum Spam Report');
+		$Data = array(
+			'Title' => $Title
+		);
 
 
-            $Sender->SetData($Data);
-            $Sender->Form->SetData($Data);
+		$Sender->SetData($Data);
+		$Sender->Form->SetData($Data);
 
-            $Sender->Render('sfsoptions', '', 'plugins/ReportSpam');
-
-        }
+		$Sender->Render('sfsoptions', '', 'plugins/ReportSpam');
     }
 
     public function CommentController_SFSOptions_Create($Sender, $Args) {
@@ -119,7 +119,6 @@ class ReportSpamPlugin extends Gdn_Plugin {
                             $content['InsertEmail']
                         ) . "&api_key=" . $SFSkey . "&evidence=" . urlencode($content['Body'])
                     );
-				 $Sender->InformMessage(T('Spam Report has been made.'), 'Dismissable');
                 }
             } else {
                 $Sender->Form->AddHidden('context', $context);
