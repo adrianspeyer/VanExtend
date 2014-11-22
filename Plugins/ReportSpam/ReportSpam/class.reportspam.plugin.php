@@ -1,4 +1,5 @@
-<?php if (!defined('APPLICATION')) { exit(); }
+<?php
+if (!defined('APPLICATION')) { exit(); }
 
 
 // Define the plugin:
@@ -139,6 +140,24 @@ class ReportSpamPlugin extends Gdn_Plugin {
     }
 
     public function PostToHost($data) {
+        $fp = fsockopen("www.stopforumspam.com", 80);
+        fputs($fp, "POST /add.php HTTP/1.1\n");
+        fputs($fp, "Host: www.stopforumspam.com\n");
+        fputs($fp, "Content-type: application/x-www-form-urlencoded\n");
+        fputs($fp, "Content-length: " . strlen($data) . "\n");
+        fputs($fp, "Connection: close\n\n");
+        fputs($fp, $data);
+        fclose($fp);
+    }
+
+    public function SendToSFS($Username, $IP, $Email, $Evidence) {
+
+        $data = "username=" . urlencode($Username) . "&ip_addr=" . urlencode(
+                $IP
+            ) . "&email=" . urlencode(
+                $Email
+            ) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence=" . urlencode($Evidence);
+
         $fp = fsockopen("www.stopforumspam.com", 80);
         fputs($fp, "POST /add.php HTTP/1.1\n");
         fputs($fp, "Host: www.stopforumspam.com\n");
