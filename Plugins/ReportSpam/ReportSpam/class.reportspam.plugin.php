@@ -71,9 +71,12 @@ class ReportSpamPlugin extends Gdn_Plugin {
 		$Sender->Form = new Gdn_Form();
 				
 		if ($Sender->Form->AuthenticatedPostBack() === true) {
+			if (!$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body'], $Sender)){
+			    $HTMLResponse = $Sender->Data('Response');
+				$Sender->Form->AddError(strip_tags($HTMLResponse));
+			   }
 			if ($Sender->Form->ErrorCount() == 0) {
-				$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body']);
-				//to do, if checked on form,  delete content 
+				//delete content 
                 $FormValues = $Sender->Form->FormValues();
                 $DeleteContent = val('DeleteContent', $FormValues);
                 if ($DeleteContent == '1') {
@@ -96,8 +99,8 @@ class ReportSpamPlugin extends Gdn_Plugin {
 							'Reason' => 'Spam'
 						)
 					);
-                }
 			    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
+                }
 				$Sender->JsonTarget('', '', 'Refresh');
 			}
 		} else {
@@ -117,22 +120,30 @@ class ReportSpamPlugin extends Gdn_Plugin {
 		$Sender->Render('sfsoptions', '', 'plugins/ReportSpam');
     }
 
-    public function SendToSFS($Username, $IP, $Email, $Evidence) {
+    public function SendToSFS($Username, $IP, $Email, $Evidence, $Sender) {
 
-        $data = "username=" . urlencode($Username) . "&ip_addr=" . urlencode(
-                $IP
-            ) . "&email=" . urlencode(
-                $Email
-            ) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence=" . urlencode($Evidence);
+        $data = "username=" . urlencode($Username) . "&ip_addr=" . urlencode($IP) . "&email="
+            . urlencode($Email) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence="
+            . urlencode($Evidence);
 
-        $fp = fsockopen("www.stopforumspam.com", 80);
-        fputs($fp, "POST /add.php HTTP/1.1\n");
-        fputs($fp, "Host: www.stopforumspam.com\n");
-        fputs($fp, "Content-type: application/x-www-form-urlencoded\n");
-        fputs($fp, "Content-length: " . strlen($data) . "\n");
-        fputs($fp, "Connection: close\n\n");
-        fputs($fp, $data);
-        fclose($fp);
+        $Proxy = new ProxyRequest();
+        $Response = $Proxy->Request(
+            array(
+                'URL' => 'http://www.stopforumspam.com/add.php',
+                'Method' => 'POST',
+                'PreEncodePost' => true
+            ),
+            $data,
+            '',
+            array('Accept' => 'application/x-www-form-urlencoded')
+        );
+
+        $Sender->SetData('Response', $Response);
+
+        if ($Proxy->ResponseStatus == 200) {
+            return true;
+        }
+        return false;
     }
 
     public function SettingsController_ReportSpam_Create($Sender, $Args = array()) {
