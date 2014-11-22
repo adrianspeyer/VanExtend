@@ -84,8 +84,21 @@ class ReportSpamPlugin extends Gdn_Plugin {
                     }
                     $Model->Delete($contextID);
                 }
-
-			    $Sender->InformMessage(T('Your spam report has been sent.'));
+				
+				$BanUser = val('BanUser', $FormValues);
+				$BanUserDelete = val('BanUserDelete', $FormValues);	
+                if ($BanUser == '1' || $BanUserDelete == '1') {
+					$UserModel = Gdn::UserModel();
+					$UserModel->Ban(
+						$content['InsertUserID'], 
+						array(
+							'DeleteContent' => $BanUserDelete,
+							'Reason' => 'Spam'
+						)
+					);
+                }
+			    $Sender->InformMessage(T('Your spam report has been sent.', 'Dismissable'));
+				$Sender->JsonTarget('', '', 'Refresh');
 			}
 		} else {
 			$Sender->Form->AddHidden('context', $context);
