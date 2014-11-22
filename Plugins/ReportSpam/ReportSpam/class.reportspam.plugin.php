@@ -73,7 +73,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
 		if ($Sender->Form->AuthenticatedPostBack() === true) {
 			if ($Sender->Form->ErrorCount() == 0) {
 				$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body']);
-			    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
+			    $Sender->InformMessage(T('Your spam report has been sent.'));
 			}
 		} else {
 			$Sender->Form->AddHidden('context', $context);
