@@ -13,7 +13,7 @@ $PluginInfo['ReportSpam'] = array(
 );
 
 class ReportSpamPlugin extends Gdn_Plugin {
-  public function Base_DiscussionOptions_Handler($Sender, $Args) {
+   public function Base_DiscussionOptions_Handler($Sender, $Args) {
     if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {	
    	//API Key
      $SFSkey = C('Plugins.ReportSpam.APIKey');
@@ -22,7 +22,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
    }
   }
 
-  public function DiscussionController_CommentOptions_Handler($Sender, $Args) {
+   public function DiscussionController_CommentOptions_Handler($Sender, $Args) {
     if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
       $Sender->EventArguments['CommentOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => '/discussion/SFSOptions/comment/'.$Args['Comment']->CommentID.'/#Comment_'.$Args['Comment']->CommentID, 'Class' => 'Popup');
       }
@@ -74,7 +74,6 @@ class ReportSpamPlugin extends Gdn_Plugin {
 			}
 		  }
       
-
      public function CommentController_SFSOptions_Create($Sender, $Args) {
 
      if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
@@ -121,24 +120,18 @@ class ReportSpamPlugin extends Gdn_Plugin {
 			}
 		  }
       
+	public function PostToHost($data) {
+	   $fp = fsockopen("www.stopforumspam.com",80);
+	   fputs($fp, "POST /add.php HTTP/1.1\n" );
+	   fputs($fp, "Host: www.stopforumspam.com\n" );
+	   fputs($fp, "Content-type: application/x-www-form-urlencoded\n" );
+	   fputs($fp, "Content-length: ".strlen($data)."\n" );
+	   fputs($fp, "Connection: close\n\n" );
+	   fputs($fp, $data);
+	   fclose($fp);
+	  }
 
-
-
-
-public function PostToHost($data) {
-   $fp = fsockopen("www.stopforumspam.com",80);
-   fputs($fp, "POST /add.php HTTP/1.1\n" );
-   fputs($fp, "Host: www.stopforumspam.com\n" );
-   fputs($fp, "Content-type: application/x-www-form-urlencoded\n" );
-   fputs($fp, "Content-length: ".strlen($data)."\n" );
-   fputs($fp, "Connection: close\n\n" );
-   fputs($fp, $data);
-   fclose($fp);
-  }
-
-
-
- public function SettingsController_ReportSpam_Create($Sender, $Args = array()) {
+    public function SettingsController_ReportSpam_Create($Sender, $Args = array()) {
       $Sender->Permission('Garden.Settings.Manage');
       $Sender->SetData('Title', T('Enter StopForumSpam API key'));
 
@@ -157,4 +150,5 @@ public function PostToHost($data) {
       $Sender->AddSideMenu('dashboard/settings/plugins');
       $Cf->RenderAll();
    }	
+	
 }	
