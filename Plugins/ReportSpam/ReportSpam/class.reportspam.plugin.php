@@ -14,38 +14,120 @@ $PluginInfo['ReportSpam'] = array(
 
 class ReportSpamPlugin extends Gdn_Plugin {
   public function Base_DiscussionOptions_Handler($Sender, $Args) {
-    if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-	
-	 $SFSkey = C('Plugins.ReportSpam.apiKey');
-	
-    $Sender->EventArguments['DiscussionOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => 'http://stopforumspam.com/add.php?username='.urlencode(isset($Args['Discussion']->InsertName) ? $Args['Discussion']->InsertName : $Args['Discussion']->FirstName).'&ip_addr='.urlencode($Args['Discussion']->InsertIPAddress).'&evidence='.urlencode($Args['Discussion']->Body).'&email='.urlencode($Args['Discussion']->InsertEmail).'&api_key='.$SFSkey, 'Class' => 'Popup');
-   //Figure out how to push to URL, hide APIKEY
-	 
-	/* function PostToHost($data) {
-	   $fp = fsockopen("www.stopforumspam.com",80);
-	   fputs($fp, "POST /add.php HTTP/1.1\n" );
-	   fputs($fp, "Host: www.stopforumspam.com\n" );
-	   fputs($fp, "Content-type: application/x-www-form-urlencoded\n" );
-	   fputs($fp, "Content-length: ".strlen($data)."\n" );
-	   fputs($fp, "Connection: close\n\n" );
-	   fputs($fp, $data);
-	   fclose($fp);
-	}
-	PostToHost("username=USERNAME&ip_addr=IPADDRESS&email=EMAILADDRESS&api_key=XXXXXXXXXXXXX&evidence=YYYYYYYYYY");
-	*/
-	   
-		/*consider deleting content */	
+    if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {	
+   	//API Key
+     $SFSkey = C('Plugins.ReportSpam.APIKey');
+     if (!$SFSkey){$Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');}
+     $Sender->EventArguments['DiscussionOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => '/discussion/SFSOptions/discussion/'.$Args['Discussion']->DiscussionID, 'Class' => 'Popup');
    }
   }
 
   public function DiscussionController_CommentOptions_Handler($Sender, $Args) {
     if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-	
-	 $SFSkey = C('Plugins.ReportSpam.apiKey');
-       
-      $Sender->EventArguments['CommentOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => 'http://stopforumspam.com/add.php?username='.urlencode($Args['Author']->Name).'&ip_addr='.urlencode($Args['Author']->InsertIPAddress).'&evidence='.urlencode($Args['Comment']->Body).'&email='.urlencode($Args['Author']->Email).'&api_key='.$SFSkey, 'Class' => 'Popup');
-    //Figure out how to push to URL, hide APIKEY
-	/* function PostToHost($data) {
+      $Sender->EventArguments['CommentOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => '/discussion/SFSOptions/comment/'.$Args['Comment']->CommentID, 'Class' => 'Popup');
+      }
+	}
+   
+
+    public function DiscussionController_SFSOptions_Create($Sender, $Args) {
+      if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
+
+		//APIkey
+		 $SFSkey = C('Plugins.ReportSpam.APIKey');
+		 
+		 //get arguments
+		if (count($Sender->RequestArgs) != 2) {
+		throw new Gdn_UserException('Bad Request', 400);
+		}
+
+		list($context, $contextID) = $Sender->RequestArgs;
+		$content = getRecord($context,$contextID);
+		$Sender->setData('content', $content);
+		$Sender->Form = new Gdn_Form();
+
+		if ($Sender->Form->AuthenticatedPostBack() === true) {
+			 if ($Sender->Form->ErrorCount() == 0) {
+				$FormValues = $Sender->Form->FormValues();
+				$contextID = val('contextID', $FormValues);
+				$context = val('context', $FormValues);
+				$content = getRecord($context,$contextID);
+				// var_dump('SampleData:', $content);
+				//var_dump($content['InsertName']);
+				//echo ("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
+	            $this->PostToHost("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
+			   }  
+		}
+			else {
+		$Sender->Form->AddHidden('context', $context);
+		$Sender->Form->AddHidden('contextID', $contextID);
+		}
+
+		$Title = t('Stop Forum Spam Report');
+		$Data = array(     
+		'Title' => $Title 
+		);
+
+
+		$Sender->SetData($Data);
+		$Sender->Form->SetData($Data);
+
+		$Sender->Render('sfsoptions','', 'plugins/ReportSpam');
+
+			}
+		  }
+      
+
+     public function CommentController_SFSOptions_Create($Sender, $Args) {
+
+     if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
+	 
+	 	//APIkey
+		 $SFSkey = C('Plugins.ReportSpam.APIKey');
+
+		 //get arguments
+		if (count($Sender->RequestArgs) != 2) {
+		throw new Gdn_UserException('Bad Request', 400);
+		}
+
+		list($context, $contextID) = $Sender->RequestArgs;
+		$content = getRecord($context,$contextID);
+		$Sender->setData('content', $content);
+		$Sender->Form = new Gdn_Form();
+
+		if ($Sender->Form->AuthenticatedPostBack() === true) {
+			 if ($Sender->Form->ErrorCount() == 0) {
+				$FormValues = $Sender->Form->FormValues();
+				$contextID = val('contextID', $FormValues);
+				$context = val('context', $FormValues);
+				$content = getRecord($context,$contextID);
+				//var_dump('SampleData:', $content);
+				$this->PostToHost("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
+			   }
+		}
+			else {
+		$Sender->Form->AddHidden('context', $context);
+		$Sender->Form->AddHidden('contextID', $contextID);
+		}
+
+		$Title = t('Stop Forum Spam Report');
+		$Data = array(     
+		'Title' => $Title 
+		);
+
+
+		$Sender->SetData($Data);
+		$Sender->Form->SetData($Data);
+
+		$Sender->Render('sfsoptions','', 'plugins/ReportSpam');
+
+			}
+		  }
+      
+
+
+
+
+public function PostToHost($data) {
    $fp = fsockopen("www.stopforumspam.com",80);
    fputs($fp, "POST /add.php HTTP/1.1\n" );
    fputs($fp, "Host: www.stopforumspam.com\n" );
@@ -55,13 +137,8 @@ class ReportSpamPlugin extends Gdn_Plugin {
    fputs($fp, $data);
    fclose($fp);
   }
-   PostToHost("username=USERNAME&ip_addr=IPADDRESS&email=EMAILADDRESS&api_key=XXXXXXXXXXXXX&evidence=YYYYYYYYYY");
-   */
-	}
-	
-	/*consider deleting content */
-	
-  }
+
+
 
  public function SettingsController_ReportSpam_Create($Sender, $Args = array()) {
       $Sender->Permission('Garden.Settings.Manage');
@@ -75,13 +152,12 @@ class ReportSpamPlugin extends Gdn_Plugin {
 	  
       $Cf = new ConfigurationModule($Sender);
       $Cf->Initialize(array(
-          'Plugins.ReportSpam.apiKey' => array()
+          'Plugins.ReportSpam.APIKey' => array()
           ));
 		  
 		 
       $Sender->AddSideMenu('dashboard/settings/plugins');
       $Cf->RenderAll();
    }	
-	
 	
 }	
