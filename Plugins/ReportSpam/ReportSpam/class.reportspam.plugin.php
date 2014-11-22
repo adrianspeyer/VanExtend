@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 
-//Thanks to John for his patience and questions
 
+// Define the plugin:
 $PluginInfo['ReportSpam'] = array(
    'Name' => 'Report Spam',
    'Description' => 'Reports Spam to Stop Forum Spam.',
@@ -24,7 +24,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
   public function DiscussionController_CommentOptions_Handler($Sender, $Args) {
     if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-      $Sender->EventArguments['CommentOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => '/discussion/SFSOptions/comment/'.$Args['Comment']->CommentID, 'Class' => 'Popup');
+      $Sender->EventArguments['CommentOptions']['ReportSpam'] = array('Label' => T('Report Forum Spam'), 'Url' => '/discussion/SFSOptions/comment/'.$Args['Comment']->CommentID.'/#Comment_'.$Args['Comment']->CommentID, 'Class' => 'Popup');
       }
 	}
    
@@ -51,10 +51,8 @@ class ReportSpamPlugin extends Gdn_Plugin {
 				$contextID = val('contextID', $FormValues);
 				$context = val('context', $FormValues);
 				$content = getRecord($context,$contextID);
-				// var_dump('SampleData:', $content);
-				//var_dump($content['InsertName']);
-				//echo ("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
-	            $this->PostToHost("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
+				//var_dump('SampleData:', $content);
+				$this->PostToHost("username=".urlencode($content['InsertName'])."&ip_addr=".urlencode($content['InsertIPAddress'])."&email=".urlencode($content['InsertEmail'])."&api_key=".$SFSkey."&evidence=".urlencode($content['Body']));
 			   }  
 		}
 			else {
@@ -159,5 +157,4 @@ public function PostToHost($data) {
       $Sender->AddSideMenu('dashboard/settings/plugins');
       $Cf->RenderAll();
    }	
-	
 }	
