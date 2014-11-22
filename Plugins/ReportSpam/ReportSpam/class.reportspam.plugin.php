@@ -12,6 +12,7 @@ $PluginInfo['ReportSpam'] = array(
     'RequiredApplications' => array('Vanilla' => '2.1'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
+	'MobileFriendly' => TRUE,
     'Author' => 'Adrian Speyer'
 );
 
@@ -162,7 +163,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
         $Text = '<div class="Info">' .
             sprintf(
-                T('Get more your StopForumSpam API key %s.'),
+                T('Get your StopForumSpam API key %s.'),
                 Anchor(T('here'), 'http://www.stopforumspam.com/signup')
             ) .
             '</div>';
@@ -172,7 +173,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
         $Cf = new ConfigurationModule($Sender);
         $Cf->Initialize(
             array(
-                'Plugins.ReportSpam.APIKey' => array()
+                'Plugins.ReportSpam.APIKey' => ''
             )
         );
 
