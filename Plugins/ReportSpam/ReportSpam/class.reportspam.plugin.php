@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 
+//Thanks to John for his patience and questions
 
-// Define the plugin:
 $PluginInfo['ReportSpam'] = array(
    'Name' => 'Report Spam',
    'Description' => 'Reports Spam to Stop Forum Spam.',
