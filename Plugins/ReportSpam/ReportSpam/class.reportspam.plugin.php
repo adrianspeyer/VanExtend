@@ -81,8 +81,9 @@ class ReportSpamPlugin extends Gdn_Plugin {
                 $Sender
             )
             ) {
+				//Message back from Stop Forum Spam
                 $HTMLResponse = $Sender->Data('Response');
-                $Sender->Form->AddError(strip_tags($HTMLResponse));
+                $Sender->Form->AddError("Error: ".strip_tags($HTMLResponse));
             }
             if ($Sender->Form->ErrorCount() == 0) {
                 //delete content
