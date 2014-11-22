@@ -1,5 +1,7 @@
 <?php
-if (!defined('APPLICATION')) { exit(); }
+if (!defined('APPLICATION')) {
+    exit();
+}
 
 //Thanks to John for patience and time
 
@@ -15,13 +17,13 @@ $PluginInfo['ReportSpam'] = array(
 
 class ReportSpamPlugin extends Gdn_Plugin {
     public function Base_DiscussionOptions_Handler($Sender, $Args) {
-		
-		$UserModel = Gdn::UserModel();
-		$User = $UserModel->GetID($Args['Discussion']->InsertUserID);
-		if ($UserModel->CheckPermission($User, 'Garden.Moderation.Manage')) { 
-			return;
-		}
-		
+
+        $UserModel = Gdn::UserModel();
+        $User = $UserModel->GetID($Args['Discussion']->InsertUserID);
+        if ($UserModel->CheckPermission($User, 'Garden.Moderation.Manage')) {
+            return;
+        }
+
         if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
             $Sender->EventArguments['DiscussionOptions']['ReportSpam'] = array(
                 'Label' => T('Report Forum Spam'),
@@ -32,14 +34,14 @@ class ReportSpamPlugin extends Gdn_Plugin {
     }
 
     public function DiscussionController_CommentOptions_Handler($Sender, $Args) {
-        
-		$UserModel = Gdn::UserModel();
-		$User = $UserModel->GetID($Args['Comment']->InsertUserID);
-		if ($UserModel->CheckPermission($User, 'Garden.Moderation.Manage')) { 
-			return;
-		}
-		
-		if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
+
+        $UserModel = Gdn::UserModel();
+        $User = $UserModel->GetID($Args['Comment']->InsertUserID);
+        if ($UserModel->CheckPermission($User, 'Garden.Moderation.Manage')) {
+            return;
+        }
+
+        if (Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
             $Sender->EventArguments['CommentOptions']['ReportSpam'] = array(
                 'Label' => T('Report Forum Spam'),
                 'Url' => '/discussion/SFSOptions/comment/' . $Args['Comment']->CommentID . '/#Comment_' . $Args['Comment']->CommentID,
@@ -50,33 +52,40 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
 
     public function DiscussionController_SFSOptions_Create($Sender, $Args) {
-		if (!Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
-			return;
-		}			
-		 
-		 //API Key
-		$SFSkey = C('Plugins.ReportSpam.APIKey');
-		if (!$SFSkey) {
-			$Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
-		}
+        if (!Gdn::Session()->CheckPermission('Garden.Moderation.Manage')) {
+            return;
+        }
 
-		//get arguments
-		if (count($Sender->RequestArgs) != 2) {
-			throw new Gdn_UserException('Bad Request', 400);
-		}
+        //API Key
+        $SFSkey = C('Plugins.ReportSpam.APIKey');
+        if (!$SFSkey) {
+            $Sender->InformMessage(T('You cannot report spam until your enter an API Key.'), 'Dismissable');
+        }
 
-		list($context, $contextID) = $Sender->RequestArgs;
-		$content = getRecord($context, $contextID);
-		$Sender->setData('content', $content);
-		$Sender->Form = new Gdn_Form();
-				
-		if ($Sender->Form->AuthenticatedPostBack() === true) {
-			if (!$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body'], $Sender)){
-			    $HTMLResponse = $Sender->Data('Response');
-				$Sender->Form->AddError(strip_tags($HTMLResponse));
-			   }
-			if ($Sender->Form->ErrorCount() == 0) {
-				//delete content 
+        //get arguments
+        if (count($Sender->RequestArgs) != 2) {
+            throw new Gdn_UserException('Bad Request', 400);
+        }
+
+        list($context, $contextID) = $Sender->RequestArgs;
+        $content = getRecord($context, $contextID);
+        $Sender->setData('content', $content);
+        $Sender->Form = new Gdn_Form();
+
+        if ($Sender->Form->AuthenticatedPostBack() === true) {
+            if (!$this->SendToSFS(
+                $content['InsertName'],
+                $content['InsertIPAddress'],
+                $content['InsertEmail'],
+                $content['Body'],
+                $Sender
+            )
+            ) {
+                $HTMLResponse = $Sender->Data('Response');
+                $Sender->Form->AddError(strip_tags($HTMLResponse));
+            }
+            if ($Sender->Form->ErrorCount() == 0) {
+                //delete content
                 $FormValues = $Sender->Form->FormValues();
                 $DeleteContent = val('DeleteContent', $FormValues);
                 if ($DeleteContent == '1') {
@@ -87,37 +96,37 @@ class ReportSpamPlugin extends Gdn_Plugin {
                     }
                     $Model->Delete($contextID);
                 }
-				
-				$BanUser = val('BanUser', $FormValues);
-				$BanUserDelete = val('BanUserDelete', $FormValues);	
+
+                $BanUser = val('BanUser', $FormValues);
+                $BanUserDelete = val('BanUserDelete', $FormValues);
                 if ($BanUser == '1' || $BanUserDelete == '1') {
-					$UserModel = Gdn::UserModel();
-					$UserModel->Ban(
-						$content['InsertUserID'], 
-						array(
-							'DeleteContent' => $BanUserDelete,
-							'Reason' => 'Spam'
-						)
-					);
-			    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
+                    $UserModel = Gdn::UserModel();
+                    $UserModel->Ban(
+                        $content['InsertUserID'],
+                        array(
+                            'DeleteContent' => $BanUserDelete,
+                            'Reason' => 'Spam'
+                        )
+                    );
+                    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
                 }
-				$Sender->JsonTarget('', '', 'Refresh');
-			}
-		} else {
-			$Sender->Form->AddHidden('context', $context);
-			$Sender->Form->AddHidden('contextID', $contextID);
-		}
+                $Sender->JsonTarget('', '', 'Refresh');
+            }
+        } else {
+            $Sender->Form->AddHidden('context', $context);
+            $Sender->Form->AddHidden('contextID', $contextID);
+        }
 
-		$Title = t('Stop Forum Spam Report');
-		$Data = array(
-			'Title' => $Title
-		);
+        $Title = t('Stop Forum Spam Report');
+        $Data = array(
+            'Title' => $Title
+        );
 
 
-		$Sender->SetData($Data);
-		$Sender->Form->SetData($Data);
+        $Sender->SetData($Data);
+        $Sender->Form->SetData($Data);
 
-		$Sender->Render('sfsoptions', '', 'plugins/ReportSpam');
+        $Sender->Render('sfsoptions', '', 'plugins/ReportSpam');
     }
 
     public function SendToSFS($Username, $IP, $Email, $Evidence, $Sender) {
