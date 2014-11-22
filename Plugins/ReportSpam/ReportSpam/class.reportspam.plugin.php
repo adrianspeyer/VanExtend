@@ -74,7 +74,17 @@ class ReportSpamPlugin extends Gdn_Plugin {
 			if ($Sender->Form->ErrorCount() == 0) {
 				$this->SendToSFS($content['InsertName'], $content['InsertIPAddress'], $content['InsertEmail'], $content['Body']);
 				//to do, if checked on form,  delete content 
-				 
+                $FormValues = $Sender->Form->FormValues();
+                $DeleteContent = val('DeleteContent', $FormValues);
+                if ($DeleteContent == '1') {
+                    if ($context == 'comment') {
+                        $Model = new CommentModel();
+                    } elseif ($context == 'discussion') {
+                        $Model = new DiscussionModel();
+                    }
+                    $Model->Delete($contextID);
+                }
+
 			    $Sender->InformMessage(T('Your spam report has been sent.'));
 			}
 		} else {
