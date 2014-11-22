@@ -97,7 +97,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
 						)
 					);
                 }
-			    $Sender->InformMessage(T('Your spam report has been sent.', 'Dismissable'));
+			    $Sender->InformMessage(T('Your spam report has been sent.'), 'Dismissable');
 				$Sender->JsonTarget('', '', 'Refresh');
 			}
 		} else {
