@@ -119,6 +119,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
                             $content['InsertEmail']
                         ) . "&api_key=" . $SFSkey . "&evidence=" . urlencode($content['Body'])
                     );
+				 $Sender->InformMessage(T('Spam Report has been made.'), 'Dismissable');
                 }
             } else {
                 $Sender->Form->AddHidden('context', $context);
