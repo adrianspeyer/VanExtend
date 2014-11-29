@@ -34,7 +34,7 @@
 	  <strong class="SiteTitle"><a href="{link path="/"}">{logo}</a></strong>
 	  <li class="newdiscuss">
 		<a class="NewDiscussion Selected" href="/vanilla/post/discussion">
-		<img alt="New Discussion" src="/vanilla/themes/mobile/design/images/new.png">
+		<img alt="New Discussion" src="/themes/classic2014/design/images/new.png">
 		</a>
 	  </li>
 	 </div>

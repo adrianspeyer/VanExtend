@@ -30,12 +30,12 @@ div.navigation h3  {
 }
 
 div.navigation ul li a{
-color: #000;
+color: #867970;
 font-weight: bold;
 }
 
 div.navigation ul li .Selected{
-color:  #867970;
+color:  #000;
 font-weight: bold;
 }
 
@@ -52,7 +52,7 @@ font-weight: bold;
     bottom: 100%;
     left: 0;
     z-index: 1;
-    padding: 2em 0 0 5em;
+    /*padding: 2em 0 0 5em;*/
 }
 
 .nav-trigger {
@@ -68,8 +68,9 @@ label[for="nav-trigger"] {
     width: 25px;
     height: 25px;
     cursor: pointer;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
-    background-size: contain;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' version=\'1.1\' x=\'0px\' y=\'0px\' width=\'30px\' height=\'30px\' viewBox=\'0 0 30 30\' enable-background=\'new 0 0 30 30\' xml:space=\'preserve\'><rect y=\'6\' width=\'30\' height=\'6\'/><rect y=\'18\' width=\'30\' height=\'6\'/></svg>");
+	background-size: contain;
+	background-color: #fff;
 }
 
 .nav-trigger:checked + label {
@@ -87,9 +88,13 @@ label[for="nav-trigger"] {
 
 .Banner {
      background-color: #000;
-     padding: 20px 0px 30px 20px ! important;
-    
+     padding: 20px 0px 10px 60px ! important;
+	position:fixed !important;
+	top:0px  !important;
+	width:100%;
+	z-index:1;
 }
+
 
 .Banner a{
    color: #fff;
@@ -102,11 +107,11 @@ label[for="nav-trigger"] {
 div.site-wrap div.Banner li.newdiscuss {
      float: right;
      list-style: outside none none;
-     padding-right: 15px;
+     padding-right: 85px;
 }
 
 div.Banner li.newdiscuss a.NewDiscussion.Selected img {
-height: 35px !important;
+height: 25px !important;
 }
 
 
@@ -118,39 +123,28 @@ body {
 
 
 
+div.SiteSearch{
+padding-top:60px;
+}
 
 .SiteSearch .InputBox {
     float: right !important;
     padding: 2px !important;
 	margin-top: 8px !important;
-	width: 30% !important;
+	width: 200px !important;
 }
 
 
 .SiteSearch .Button {
- top: 12px !important;
+ margin-top: 67px !important;
 }
 
-html body#dashboard_search_index.Dashboard.Search.index.Section-SearchResults div#Frame div.site-wrap div.SiteSearch form div {
+div.SearchForm form div div.SiteSearch.InputAndButton input#Form_Search.InputBox, #Form_Search1.Button{
 display: none !important;
 }
 
-.index.Section-SearchResults div#Frame div.site-wrap .SiteSearch .InputBox
-{
-float: none !important;
-width: 60% !important;
-margin-left: 80px;
-margin-top: none !important!;
-
-}
-
-.index.Section-SearchResults div#Frame div.site-wrap 
-.SearchForm .SiteSearch .Button {
-    right: 90px;
-    top: 12px;
-}
-.SiteSearch .Button {
- top: 12px !important;
+html body#dashboard_search_index.Dashboard.Search.index.Section-SearchResults div#Frame div.site-wrap div#Content div.SearchForm form div{
+display:none;
 }
 
 h1, h2, h3, h4, h5, h6 {
