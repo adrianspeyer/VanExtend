@@ -31,7 +31,7 @@
 	 
 	 <div class="site-wrap">
 	 <div class="Banner">
-	  <strong class="SiteTitle"><a href="{link path="/"}">{logo}</a></strong>
+	  <strong class="SiteTitle"><a href="{link path="/"}">{mobile_logo}</a></strong>
 	  <li class="newdiscuss">
 		<a class="NewDiscussion Selected" href="/vanilla/post/discussion">
 		<img alt="New Discussion" src="/themes/classic2014/design/images/new.png">
