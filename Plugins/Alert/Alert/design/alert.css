@@ -1,0 +1,13 @@
+.ItemDiscussion.Alert {
+     background-color: #ff0000 ! important;
+     color: #ffffff !important;
+     border: solid 2px  #000 !important;
+}
+
+.Tag-Alert{
+background-color: #FF6600  !important;
+}
+
+.ItemDiscussion.Alert div.ItemContent.Discussion div.Meta.Meta-Discussion{
+color:#fff !important;
+}
