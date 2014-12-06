@@ -89,9 +89,9 @@ class DyslexiaPlugin extends Gdn_Plugin {
       if (!is_array($UserPrefs))
          $UserPrefs = array();
 
-      $DyslexiaFont = GetValue('Dyslexia.Font', $UserPrefs, '1');
+      $DyslexiaFont = GetValue('Dyslexia.Font', $UserPrefs);
 
-		if ($DyslexiaFont != "0")
+		if ($DyslexiaFont == 1)
 		{	
 		$Sender->AddCssFile('dyslexic.css', 'plugins/Dyslexia');  	
 		}
