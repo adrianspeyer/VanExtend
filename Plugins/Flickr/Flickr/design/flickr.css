@@ -1,0 +1,25 @@
+.flickr_badge_image {
+    padding: 0;
+    float: left;
+    display: block;
+
+}
+
+.flickr_badge_image a {
+    background: none repeat scroll 0 0 #CFECFF;
+    display: block;
+    float: left;
+    margin: 2px;
+    padding: 3px;
+    text-decoration: none !important;
+}
+.flickr_badge_image a img {
+    display: block;
+    float: left;
+    width: 70px;
+    height: 70px;
+}
+.flickr_badge_image a:hover {
+    background: none repeat scroll 0 0 #38ABE3;
+
+}
