@@ -1,5 +1,5 @@
 #Flickr
 
-Allows users to display Flicky Gallery on user profile.
+Allows users to display Flickr Gallery on user profile.
 
-*WORK IN PROGRESS -- ALPHA PLUGIN*
+**WORK IN PROGRESS -- ALPHA PLUGIN**
