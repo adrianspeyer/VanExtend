@@ -93,7 +93,7 @@ $PluginInfo['Alert'] = array(
 			   }  
 		
 		 /**
-		* Add CSS class to conversation
+		* Add CSS class to discussion
 		*/ 
 		 public function DiscussionsController_BeforeDiscussionName_Handler($Sender, $Args) {
 			 $Alert = GetValue('Alert', GetValue('Discussion', $Args));
