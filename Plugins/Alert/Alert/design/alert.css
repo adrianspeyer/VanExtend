@@ -11,3 +11,8 @@ background-color: #FF6600  !important;
 .ItemDiscussion.Alert div.ItemContent.Discussion div.Meta.Meta-Discussion{
 color:#fff !important;
 }
+
+/*hide announce tag if alert */
+.ItemDiscussion.Alert .Tag.Tag-Announcement {
+    display: none;
+}
