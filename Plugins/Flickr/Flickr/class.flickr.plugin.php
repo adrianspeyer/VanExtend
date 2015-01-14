@@ -103,4 +103,17 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
 	
 	}
    
-}
+   public function Setup()
+	{
+		$Structure = Gdn::Structure();
+		
+		// Create the database table & columns for the Plugin
+		$Structure->Table('User')
+	        ->Column('FlickrID', 'varchar(255)', TRUE)
+	        ->Set(FALSE, FALSE);
+	}
+	public function OnDisable()
+	{}
+}	
+	
+ 
