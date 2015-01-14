@@ -38,26 +38,32 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
 
       $Sender->GetUserInfo($UserReference, $Username);
       $UserPrefs = Gdn_Format::Unserialize($Sender->User->Preferences);
-      if (!is_array($UserPrefs))
-         $UserPrefs = array();
-
+      if (!is_array($UserPrefs)){
+	  $UserPrefs = array();
+	  }
+	
       $UserID = $ViewingUserID = Gdn::Session()->UserID;
 
       if ($Sender->User->UserID != $ViewingUserID) {
          $Sender->Permission('Garden.Users.Edit');
          $UserID = $Sender->User->UserID;
       }
+	  
 
-      $Sender->SetData('ForceEditing', ($UserID == Gdn::Session()->UserID) ? FALSE : $Sender->User->Name);
-      $FlickrID = GetValue('FlickrID');
+      $FlickrID = GetValue('FlickrID', $UserPrefs);
+
       $Sender->Form->SetValue('FlickrID', $FlickrID);
-
-      $Sender->SetData('FlickrID', $FlickrID);    
       
+
 		 // If seeing the form for the first time...
-      if ($Sender->Form->IsPostBack()) {
+       if ($Sender->Form->AuthenticatedPostBack()) {
          $FlickrID = $Sender->Form->GetValue('FlickrID');
-         if ($FlickrID != $FlickrID) {
+		 
+	   if (empty($FlickrID)) {
+		$Sender->Form->AddError('FlickrID is invalid');
+	   }
+		 
+		 if ($Sender->Form->ErrorCount() == 0) {
             Gdn::UserModel()->SavePreference($UserID, 'FlickrID', $FlickrID);
             $Sender->InformMessage(T("Your changes have been saved."));
          }
@@ -67,12 +73,16 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
 	} 
 
      public function ProfileController_AfterRenderAsset_Handler($Sender) {
+		 
+		  if (!Gdn::Session()->IsValid())
+         return;
 
-	 if (empty($FlickrID)){$FlickrID = '49912244@N05';}
-
-		  if (!empty($FlickrID))
-		  {
-			  
+		$UserPrefs = Gdn_Format::Unserialize($Sender->User->Preferences);
+		  if (!is_array($UserPrefs)){
+		  $UserPrefs = array();
+		}	   
+	   $FlickrID = GetValue('FlickrID', $UserPrefs);
+      
 			/* Modify for Number of Pics & Size */
 			$NumPics = '10';
 			$PicSize = 's';  
@@ -80,38 +90,23 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
 				
 			$FlickrCode = '<div id="flickr_tab"><script type="text/javascript"
 			src="http://www.flickr.com/badge_code_v2.gne?count='.$NumPics.'
-			&display=latest&size=' .$PicSize. '&layout=x&source=user&user='.$FlickrID.'">
+			&display=latest&size=' .$PicSize. '&layout=x&source=user&user='.htmlspecialchars($FlickrID).'">
 			</script></div>';
-		  }
+		  
 		  
 		  // Add flickr stream to panel
       $Sender->AddAsset('Panel', $FlickrCode, 'FlickrPlugin');
  }  
   
    public function Base_Render_Before($Sender) {
-   
-   if (!Gdn::Session()->IsValid())
-         return;
-
-      $UserPrefs = Gdn_Format::Unserialize(Gdn::Session()->User->Preferences);
-      if (!is_array($UserPrefs))
-         $UserPrefs = array();
-
-      $FlickrID = GetValue('FlickrID', $UserPrefs);
-	  
-      $Sender->AddCSSFile('plugins/Flickr/design/flickr.css');
+ 
+  $Sender->AddCSSFile('plugins/Flickr/design/flickr.css');
 	
 	}
    
    public function Setup()
-	{
-		$Structure = Gdn::Structure();
-		
-		// Create the database table & columns for the Plugin
-		$Structure->Table('User')
-	        ->Column('FlickrID', 'varchar(255)', TRUE)
-	        ->Set(FALSE, FALSE);
-	}
+	{}
+	
 	public function OnDisable()
 	{}
 }	
