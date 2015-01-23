@@ -7,4 +7,7 @@ If you have any issues with redirect change line header to redirect to direct pa
 
 Now when in Maintenance mode, a bar will show to remind you to turn off the plugin. When you disbale the plugin, visitors can access the site again.
 
+You can use the follwoing in your config to allow IP to also get around maintenance mode.
+$Configuration['Plugins']['Maintenance']['LastIP'] = '127.0.0.1';
+
 Note: Be careful not to sign out with plugin enabled or you have to go back and remove it from the plugins folder to get back in as admin. This is made for someone to upgrade or make small tweaks and reopen the forum.
