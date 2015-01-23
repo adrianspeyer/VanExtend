@@ -8,13 +8,13 @@ Thanks to Lincoln for the assist
 $PluginInfo['AlwaysEdit'] = array(
    'Name' => 'Always Edit',
    'Description' => 'This plugin overrides author edit limit to allow you to create a role where some authors can always edit their own posts.',
-   'Version' => '1.0',
+   'Version' => '1.0.1',
    'RegisterPermissions' => array('Plugins.AlwaysEdit.Edit' => 1),
    'MobileFriendly' => TRUE,
    'SettingsPermission' => 'Garden.Settings.Manage',
    'Author' => "Adrian Speyer",
-   'License' => 'GNU GPL2',
-   'AuthorUrl' => 'http://adrianspeyer.com'
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class AlwaysEditPlugin extends Gdn_Plugin {
