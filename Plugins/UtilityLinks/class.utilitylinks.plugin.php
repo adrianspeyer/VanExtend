@@ -6,8 +6,8 @@ $PluginInfo['UtilityLinks'] = array(
 	'Version' => '1.0.1',
 	'SettingsPermission' => 'Garden.AdminUser.Only',
 	'Author' => "Adrian Speyer",
-    'AuthorUrl' => 'http://adrianspeyer.com',
-    'License' => 'GNU GPL2'
+        'AuthorUrl' => 'http://adrianspeyer.com',
+        'License' => 'GNU GPL2'
 );
 
 class UpdateLinksPlugin implements Gdn_IPlugin {
