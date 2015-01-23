@@ -1,17 +1,14 @@
 <?php if(!defined('APPLICATION')) die();
 /**
-*
 * # Maintenance Plugin for Vanilla 2 #
 * You can change closed.php to be whatever you want to be shown while you are closed for upgrade.
-* 
-*
 */
 
 // Define the plugin:
 $PluginInfo['Maintenance'] = array(
    'Name' => 'Closed For Maintenance',
    'Description' => 'Maintenance plugin for Vanilla 2, allows you to close your site to do maintenance',
-   'Version' => '0.8.1',
+   'Version' => '0.8.2',
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://adrianspeyer.com',
    'License' => 'GNU GPL2'
