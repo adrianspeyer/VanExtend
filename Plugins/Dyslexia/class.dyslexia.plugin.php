@@ -9,8 +9,8 @@
 
 $PluginInfo['Dyslexia'] = array(
    'Name' => 'Dyslexia',
-   'Description' => "Allows users with Dyslexia to select Open Dyslexic, a font friendly for those with Dyslexia to change forum font via a link in the footer.",
-   'Version' => '1.0',
+   'Description' => "Allows users with Dyslexia to select Open Dyslexic, a font friendly for those with Dyslexia to change forum font via profile setting.",
+   'Version' => '1.0.1',
    'RequiredApplications' => array('Vanilla' => '2.1'),
    'MobileFriendly' => TRUE,
    'Author' => "Adrian Speyer",
