@@ -4,10 +4,10 @@ Ensure flickr ID can be saved
 */
 
 // Define the plugin:
-$PluginInfo['Flickr2'] = array(
+$PluginInfo['FlickrReloaded'] = array(
    'Name' => 'Flickr Reloaded',
    'Description' => 'This allows users to have a Flickr Gallery on their profile.',
-   'Version' => '1.0.1',
+   'Version' => '1.0.3',
    'MobileFriendly' => TRUE,
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://adrianspeyer.com',
@@ -15,7 +15,7 @@ $PluginInfo['Flickr2'] = array(
 );
 
 
-class Flickr2Plugin extends Gdn_Plugin {
+class FlickrReloadedPlugin extends Gdn_Plugin {
 
 public function ProfileController_AfterAddSideMenu_Handler($Sender) {
       if (!Gdn::Session()->CheckPermission('Garden.SignIn.Allow'))
@@ -25,13 +25,13 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
       $ViewingUserID = Gdn::Session()->UserID;
 
       if ($Sender->User->UserID == $ViewingUserID) {
-         $SideMenu->AddLink('Options', Sprite('').' '.T('Flickr Settings'), '/profile/flickr', FALSE, array('class' => 'Popup'));
+         $SideMenu->AddLink('Options', Sprite('').' '.T('Flickr Settings'), '/profile/flickrreloaded', FALSE, array('class' => 'Popup'));
       } else {
-         $SideMenu->AddLink('Options', Sprite('').' '.T('Flickr Settings'), UserUrl($Sender->User, '', 'flickr'), 'Garden.Users.Edit', array('class' => 'Popup'));
+         $SideMenu->AddLink('Options', Sprite('').' '.T('Flickr Settings'), UserUrl($Sender->User, '', 'flickrreloaded'), 'Garden.Users.Edit', array('class' => 'Popup'));
       }
    }
 
-  public function ProfileController_Flickr_Create($Sender) {
+  public function ProfileController_FlickrReloaded_Create($Sender) {
       $Sender->Permission('Garden.SignIn.Allow');
       $Sender->Title("Flickr Settings");
 
@@ -70,7 +70,7 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
          }
       } 
 
-      $Sender->Render('flickr', '', 'plugins/Flickr');
+      $Sender->Render('flickr', '', 'plugins/FlickrReloaded');
 	} 
 
      public function ProfileController_AfterRenderAsset_Handler($Sender) {
@@ -96,12 +96,12 @@ public function ProfileController_AfterAddSideMenu_Handler($Sender) {
 		  
 		  
 		  // Add flickr stream to panel
-      $Sender->AddAsset('Panel', $FlickrCode, 'FlickrPlugin');
+      $Sender->AddAsset('Panel', $FlickrCode, 'FlickrReloadedPlugin');
  }  
   
    public function Base_Render_Before($Sender) {
  
-  $Sender->AddCSSFile('plugins/Flickr/design/flickr.css');
+  $Sender->AddCSSFile('plugins/FlickrReloaded/design/flickr.css');
 	
 	}
    
