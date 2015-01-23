@@ -8,7 +8,7 @@
 $PluginInfo['Maintenance'] = array(
    'Name' => 'Closed For Maintenance',
    'Description' => 'Maintenance plugin for Vanilla 2, allows you to close your site to do maintenance',
-   'Version' => '0.8.2',
+   'Version' => '0.8.3',
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://adrianspeyer.com',
    'License' => 'GNU GPL2'
