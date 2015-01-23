@@ -1,14 +1,10 @@
-<?php
-if (!defined('APPLICATION')) {
-    exit();
-}
-
+<?php if (!defined('APPLICATION')) exit();
 //Thanks to John for patience and time
 
 $PluginInfo['ReportSpam'] = array(
     'Name' => 'Report Spam',
     'Description' => 'Reports Spam to Stop Forum Spam.',
-    'Version' => '1.0.1',
+    'Version' => '1.0.2',
     'RequiredApplications' => array('Vanilla' => '2.1'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
