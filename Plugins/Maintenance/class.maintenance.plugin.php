@@ -21,13 +21,26 @@ $PluginInfo['Maintenance'] = array(
 class Maintenance  extends Gdn_Plugin {
 
     public function Base_Render_Before($Sender) {
-		if ( Gdn::Session()->CheckPermission('Garden.Settings.Manage'))
-		{
-		echo '<div style="color:#00FF00; background-color:red;text-align:center;"><b>The site is currently in Maintenance Mode</b></div>';
-		}
-		else
-	header( 'Location:'.$Url.'./plugins/Maintenance/closed.php' ) ;
-}
-    public function Setup() {
+
+    $currentIP = ($_SERVER['REMOTE_ADDR']);
+    $lastIP =  C('Plugins.Maintenance.LastIP');
+    $sameIP = "No";
+
+    if (   (isset($currentIP)) && (isset($lastIP))  && ($currentIP == $lastIP )  ) { 
+        echo '<div style="color:#00FF00; background-color:red;text-align:center;"><b>The site is currently in Maintenance Mode</b></div>';
+        return;
+        }
+
+        if ( Gdn::Session()->CheckPermission('Garden.Settings.Manage')) {
+        echo '<div style="color:#00FF00; background-color:red;text-align:center;"><b>The site is currently in Maintenance Mode</b></div>';
+        }
+        else
+    header( 'Location:'.$Url.'./plugins/Maintenance/closed.php' ) ;
+   }
+
+public function Setup() {
+     if ($_SERVER['REMOTE_ADDR']) {
+            $remoteaddress = $_SERVER['REMOTE_ADDR'];
+             SaveToConfig('Plugins.Maintenance.LastIP', $remoteaddress);
+       }
     }
-}
