@@ -12,8 +12,8 @@ $PluginInfo['ReportSpam'] = array(
     'RequiredApplications' => array('Vanilla' => '2.1'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
-	'MobileFriendly' => TRUE,
-	'Author' => "Adrian Speyer",
+    'MobileFriendly' => TRUE,
+    'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
     'License' => 'GNU GPL2'
 );
