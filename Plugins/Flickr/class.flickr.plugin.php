@@ -4,7 +4,7 @@ Ensure flickr ID can be saved
 */
 
 // Define the plugin:
-$PluginInfo['Flickr'] = array(
+$PluginInfo['Flickr2'] = array(
    'Name' => 'Flickr Reloaded',
    'Description' => 'This allows users to have a Flickr Gallery on their profile.',
    'Version' => '1.0.1',
