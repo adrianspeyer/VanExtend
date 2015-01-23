@@ -8,6 +8,8 @@ $PluginInfo['GoogleFirst'] = array(
    'Description' => 'Requires Private community. Lets the community be searched by Google and implements  <a href="http://googlewebmastercentral.blogspot.ca/2008/10/first-click-free-for-web-search.html"/>Google First Click Free</a>. Please note saavy users can still spoof in without registering.',
    'Version' => '1.0',
    'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
    'RequiredPlugins' => array('PrivateCommunity' => '1.0'),
 );
 

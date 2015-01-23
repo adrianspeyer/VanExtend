@@ -191,7 +191,7 @@ a:hover {
 #Content {
 	float: none;
 	width: auto;
-	margin: 0;
+	margin-top: 40px;
 	position: relative;
 }
 
@@ -605,4 +605,12 @@ width:85%;
 div ul li.Gender
 {
 display:none;
+}
+
+td.CategoryName div.Wrap div.ChildCategories{
+display:none;
+}
+
+div.site-wrap div.BreadcrumbsWrapper span.Breadcrumbs span.CrumbLabel{
+font-size:20px;
 }

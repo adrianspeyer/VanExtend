@@ -13,8 +13,9 @@ $PluginInfo['Dyslexia'] = array(
    'Version' => '1.0',
    'RequiredApplications' => array('Vanilla' => '2.1'),
    'MobileFriendly' => TRUE,
-   'Author' => "Adrian",
-   'AuthorUrl' => 'http://adrianspeyer.com'
+   'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class DyslexiaPlugin extends Gdn_Plugin {

@@ -5,11 +5,11 @@ $PluginInfo['Debugit'] = array(
    'Name' => 'Debug It',
    'Description' => 'This plugin allows you to turn on native Vanilla Debug mode without modifying config via FTP. Will not work if plugin/dashboard issue. In this case add <b>$Configuration[\'Debug\'] = TRUE;</b> to conf/config. Remember to disable when done so user do not see debug issues. ',
    'Version' => '1.1',
-   'Author' => "Adrian",
-   'AuthorUrl' => 'http://www.vanillaforums.com',
    'MobileFriendly' => TRUE,
    'SettingsPermission' => 'Garden.Settings.Manage',
-    'License' => 'GNU GPL2'
+   'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class DebugitPlugin extends Gdn_Plugin {

@@ -5,10 +5,10 @@ $PluginInfo['HideRant'] = array(
    'Description' => 'Posts tagged with "rant" have author info hidden from guests',
    'Version' => '1.0',
    'RequiredPlugins' => array('Tagging' => '1.8'),
-   'Author' => "Adrian",
-   'AuthorUrl' => 'http://www.adrianspeyer.com',
    'MobileFriendly' => TRUE,
-    'License' => 'GNU GPL2'
+   'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class HideRantPlugin extends Gdn_Plugin {

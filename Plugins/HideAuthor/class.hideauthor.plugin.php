@@ -4,10 +4,10 @@ $PluginInfo['HideAuthor'] = array(
    'Name' => 'HideAuthor',
    'Description' => 'Author info is hidden from guests',
    'Version' => '1.0',
-   'Author' => "Adrian",
-   'AuthorUrl' => 'http://www.adrianspeyer.com',
    'MobileFriendly' => TRUE,
-    'License' => 'GNU GPL2'
+   'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class HideAuthorPlugin extends Gdn_Plugin {

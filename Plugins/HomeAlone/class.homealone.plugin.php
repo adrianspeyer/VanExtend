@@ -5,11 +5,11 @@ $PluginInfo['HomeAlone'] = array(
    'Description' => 'This plugin creates a new permission "HomeAlone" which when used with permissions moderation.manage, esnures all content of the Admins cannot be deleted from profile page.',
    'Version' => '1.0',
    'RegisterPermissions' => array('Plugins.HomeAlone.Manage' => 0),
-   'Author' => "Adrian",
-   'AuthorUrl' => 'http://www.vanillaforums.com',
    'MobileFriendly' => TRUE,
    'SettingsPermission' => 'Garden.Settings.Manage',
-    'License' => 'GNU GPL2'
+   'Author' => "Adrian Speyer",
+   'AuthorUrl' => 'http://adrianspeyer.com',
+   'License' => 'GNU GPL2'
 );
 
 class HomeAlonePlugin extends Gdn_Plugin {

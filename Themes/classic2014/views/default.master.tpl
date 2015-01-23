@@ -16,11 +16,11 @@
 		  {if !InSection("CategoryList")}
             {categories_link}
           {/if}
-		  {event name="BeforeSignInLink"}
 		  {inbox_link}
 		  {signinout_link}
 		  {nomobile_link}
 		  {dashboard_link}
+		  {event name="BeforeSignInLink"}
 		</ul>
 	 </div>  
 	 

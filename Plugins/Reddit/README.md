@@ -10,7 +10,7 @@ References:
 
 ## Installation
 
-1. Clone the repository to the `plugins/` directory:
+1. [Download](http://vanillaforums.org/get/reddit-plugin) or clone the repository to the `plugins/` directory:
     ```sh
     $ cd {path-to-vanilla}/plugins
     $ git clone https://github.com/adriansonline/VanillaForums-Plugin-Reddit.git Reddit
