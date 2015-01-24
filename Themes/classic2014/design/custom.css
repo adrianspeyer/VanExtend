@@ -114,11 +114,17 @@ left:200px !important;
 div.site-wrap div.Banner li.newdiscuss {
      float: right;
      list-style: outside none none;
-     padding-right: 85px;
+     padding-right: 10px;
 }
 
 div.Banner li.newdiscuss a.NewDiscussion.Selected img {
-height: 25px !important;
+/*height: 25px !important;*/
+}
+
+div.site-wrap div.Banner li.newsearch {
+   float: right;
+    list-style: outside none none;
+  padding-right: 85px
 }
 
 
@@ -129,11 +135,6 @@ body {
 /* end hamburger bar */
 
 
-
-div.SiteSearch{
-padding-top:60px;
-}
-
 .SiteSearch .InputBox {
     float: right !important;
     padding: 2px !important;
@@ -143,15 +144,12 @@ padding-top:60px;
 
 
 .SiteSearch .Button {
- margin-top: 67px !important;
+ margin-top: 6px !important;
 }
 
-div.SearchForm form div div.SiteSearch.InputAndButton input#Form_Search.InputBox, #Form_Search1.Button{
-display: none !important;
-}
-
-html body#dashboard_search_index.Dashboard.Search.index.Section-SearchResults div#Frame div.site-wrap div#Content div.SearchForm form div{
-display:none;
+.SearchForm .SiteSearch {
+    position: relative !important;
+	margin-right: 50px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -173,11 +171,14 @@ a:hover {
 	width: auto;
 	clear: left;
 }
+
 .BreadcrumbsWrapper {
-   margin: 6px 3px;
-   font-size: 11px;
-   color: #888;
+    /*margin: 6px 3px;*/
+    color: #888;
+    font-size: 11px;
+    margin-top: 60px !important;
 }
+
 .Breadcrumbs a {
    color: #555;
 }
@@ -191,7 +192,7 @@ a:hover {
 #Content {
 	float: none;
 	width: auto;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 	position: relative;
 }
 
@@ -613,4 +614,9 @@ display:none;
 
 div.site-wrap div.BreadcrumbsWrapper span.Breadcrumbs span.CrumbLabel{
 font-size:20px;
+}
+
+div.PageControls.Bottom div#PagerBefore.Pager.PrevNextPager{
+clear:both;
+padding-top:10px;
 }

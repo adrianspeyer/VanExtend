@@ -32,17 +32,22 @@
 	 <div class="site-wrap">
 	 <div class="Banner">
 	  <strong class="SiteTitle"><a href="{link path="/"}">{mobile_logo}</a></strong>
+	  <li class="newsearch">
+		<a class="Search" href="/search">
+		<img alt="Search" src="{link path="/"}themes/classic2014/design/images/search.png">
+		</a>
+	  </li>
+	  {if $User.SignedIn}
 	  <li class="newdiscuss">
 		<a class="NewDiscussion Selected" href="/vanilla/post/discussion">
 		<img alt="New Discussion" src="{link path="/"}themes/classic2014/design/images/new.png">
 		</a>
 	  </li>
+	  {/if}
 	 </div>
 	 
 	 <body id="{$BodyID}" class="{$BodyClass}">
 
-	 <div class="SiteSearch">{searchbox}</div>
-	 
        <div class="BreadcrumbsWrapper">
          {breadcrumbs homelink="0"}
        </div>
