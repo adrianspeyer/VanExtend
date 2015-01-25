@@ -33,13 +33,12 @@ public function DiscussionController_DiscussionInfo_Handler($Sender) {
 public function Base_AfterBody_Handler($Sender) {
  echo "<script>"; 
  if (!Gdn::Session()->IsValid()){
- 
-			echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Anonymous', 2 ]);";}
-				else			
-		{echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Logged In', 2 ]);";
-}
-
-echo "</script>";
+	echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Anonymous', 2 ]);";}
+		else			
+	
+	{echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Logged In', 2 ]);";}
+	
+	echo "</script>";
 
 //Gets you userid number
 //$userid = (Gdn::Session()->UserID);
