@@ -3,42 +3,41 @@
 // Define the plugin:
 $PluginInfo['AmazingAnalytics'] = array(
    'Name' => 'Amazing Analytics',
-   'Description' => 'Amazing Analytics provide extra data into your Google Analytics. It will add data on which Category are most viewed(as events). It will add custom varaibles when a user is logged in vs not logged in. It will add a custom variable of the highest role type a user currenlty posseses. If you are using the profile extender add-on, you will also get data for first 3 fields added. Please make sure this data is not personally identifiable information, as this is against Google Analytics TOS -- eg name, telephone number.',
-   'Version' => '1.0',
-   'RequiredApplications' => array('Vanilla' => '2.0.18.8'),
+   'Description' => 'Amazing Analytics provide extra data into your Google Analytics, and works only with UNIVERSAL ANALYTICS. It will add data on which Category are most viewed(as events). You will need to create two dimensions in your Google Analytics console. The first dimension will determine if a user is logged in vs not logged in. Scope type should be "session".The second dimension, will advise you the highest RoleType of visitor. Scope type used should be "User". By default we take slots 1 and 2. If these slots are already takenyou will need to modify the code according to the proper dimensions to use. Learn more about Google Analytics dimensions in Universal Aanalytics here: https://developers.google.com/analytics/devguides/platform/customdimsmets.',
+   'Version' => '2.0',
+   'RequiredApplications' => array('Vanilla' => '2.1'),
    'RequiredTheme' => FALSE, 
    'RequiredPlugins' => FALSE,
    'HasLocale' => FALSE,
-   'MobileFriendly' => TRUE,
    'SettingsPermission' => 'Garden.Settings.Manage',
    'Author' => "Adrian Speyer",
-   'AuthorUrl' => 'http://adrianspeyer.com',
-   'License' => 'GNU GPL2'
+   'AuthorUrl' => 'http://www.vanillaforums.com'
 );
 
 class AmazingAnalyticsPlugin extends Gdn_Plugin {
 
 
-//This will tell Google which category is being viewed
-public function DiscussionController_DiscussionInfo_Handler($Sender) {
-        $Category = CategoryModel::Categories(GetValue('CategoryID', $Discussion));
-		 if (isset($Category)) {
-		$catid = $Sender->CategoryID;
-		$cname = $Category[$catid]['Name'];
-		echo "<script>_gaq.push(['_trackEvent', 'Category', 'View', '".$cname."']);</script>";
-       }
-   }
-
 //This will show you if user is logged in or not   
 public function Base_AfterBody_Handler($Sender) {
- echo "<script>"; 
- if (!Gdn::Session()->IsValid()){
-	echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Anonymous', 2 ]);";}
+	
+	$Category = CategoryModel::Categories($Sender->Data('CategoryID'));
+		if (isset($Category)) {
+			$catid = $Sender->CategoryID;
+			$cname = $Category['Name'];
+			echo "<script>ga('send', 'event', 'category', 'view', '".$cname."');</script>";
+		 }
+
+		 echo "<script>"; 
+		 
+		if (!Gdn::Session()->IsValid()){
+			echo "var dimensionValue = 'Anonymous';
+			ga('set', 'dimension1', dimensionValue);";
+			}
 		else			
-	
-	{echo "_gaq.push(['_setCustomVar', 1,'UserType', 'Logged In', 2 ]);";}
-	
-	echo "</script>";
+		   {echo "var dimensionValue = 'Logged In';
+			ga('set', 'dimension1', dimensionValue);";
+		   }
+		echo "</script>";
 
 //Gets you userid number
 //$userid = (Gdn::Session()->UserID);
@@ -58,11 +57,12 @@ public function Base_AfterBody_Handler($Sender) {
 
 echo "<script>"; 
 	$roletype = implode(', ', $Roles);
-	echo "_gaq.push(['_setCustomVar', 2,'RoleType', '".$Role['Name']."', 1 ]);";
+	echo "var dimensionValue = '".$Role['Name']."';
+    ga('set', 'dimension2', dimensionValue);";
 	echo "</script>"; 
 
-
-//Work on getting data from profile extender
+//Work on getting data from profile extender -- will not work without user creating appropriate dimensions first
+/*
 $ProfileFields = Gdn::UserModel()->GetMeta((Gdn::Session()->UserID), 'Profile.%', 'Profile.');
  if ($ProfileFields) {
  echo '<script>';
@@ -75,6 +75,7 @@ if($vc==5) break; //stops this custom var at 5 which is max
   }
   echo '</script>';
 }
+*/ 
 }
    public function Setup() {
    }
