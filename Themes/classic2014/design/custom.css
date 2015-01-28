@@ -620,3 +620,19 @@ div.PageControls.Bottom div#PagerBefore.Pager.PrevNextPager{
 clear:both;
 padding-top:10px;
 }
+
+/* Smartphones (portrait for yaga) ----------- */
+	/* Styles */
+a.Yaga_Reaction span.Yaga_ReactionName
+{
+font-size:10px;
+}
+div.Yaga div.DataCounts span.CountItemWrap
+{
+padding:10px;
+}
+
+div.User div.Yaga span.CountItem.Selected
+{
+width:100%;
+}
