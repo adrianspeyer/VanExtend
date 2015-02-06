@@ -7,7 +7,7 @@ References:
 - http://www.reddit.com/dev/api
 - https://github.com/reddit/reddit/wiki/OAuth2
 
-*Currently this plugin is not working as intended
+**Currently this plugin is not working as intended
 
 ## Installation
 
