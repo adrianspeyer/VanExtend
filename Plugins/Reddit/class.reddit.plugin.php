@@ -419,7 +419,7 @@ public function AssetModel_StyleCss_Handler($Sender) {
         $ShareUrl = 'http://www.reddit.com/submit?url=' . Url($Url, true);
 
         // Simple share button image
-        $ShareImg = '<img src="https://www.coinforum.ca/images/spreddit1.gif" alt="submit to reddit" border="0">';
+        $ShareImg = '<img src="../plugin/reddit/images/spreddit1.gif" alt="submit to reddit" border="0">';
 
         // Build React button
         $ReactButton  = ' ';
