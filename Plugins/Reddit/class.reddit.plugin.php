@@ -4,7 +4,7 @@
 $PluginInfo['Reddit'] = array(
     'Name'                 => 'Reddit Social Connect',
     'Description'          => 'Users may sign into your site using their Reddit account.',
-    'Version'              => '0.1.3',
+    'Version'              => '0.1.4',
     'RequiredApplications' => array('Vanilla' => '2.1.7'),
     'RequiredTheme'        => false,
     'RequiredPlugins'      => false,
@@ -16,7 +16,7 @@ $PluginInfo['Reddit'] = array(
     'Hidden'               => true,
     'SocialConnect'        => false,
     'RequiresRegistration' => true,
-	'Author' => "Adrian Speyer",
+    'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
     'License' => 'GNU GPL2'
 );
@@ -45,13 +45,10 @@ require_once PATH_LIBRARY . '/vendors/oauth/OAuth.php';
  */
 class RedditPlugin extends Gdn_Plugin {
     
-	/**
-Add CSS to work with version 2.2
-**/
-public function AssetModel_StyleCss_Handler($Sender) {
-      $Sender->AddCssFile('reddit.css', 'plugins/Reddit');
-   }
 	
+    public function AssetModel_StyleCss_Handler($Sender) {
+      $Sender->AddCssFile('reddit.css', 'plugins/Reddit');
+    }
 	
 	/// Constants ///
 
