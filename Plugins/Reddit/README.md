@@ -12,13 +12,7 @@ References:
 ## Installation
 
 1. [Download](http://vanillaforums.org/get/reddit-plugin) or clone the repository to the `plugins/` directory:
-    ```sh
-    $ cd {path-to-vanilla}/plugins
-    $ git clone https://github.com/adrianspeyer/VanillaForums-Plugin-Reddit.git Reddit
-    ```
-    
-    > __NB:__ If you manually downloaded the repo, make sure to rename it `Reddit`.
-    
+
 2. Enable "Reddit Social Connect" in __Forum Settings > Social__ in the dashboard.
 
 3. Add your Reddit App Credentials.
