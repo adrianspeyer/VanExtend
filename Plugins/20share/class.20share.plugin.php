@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 $PluginInfo['20Share'] = array(
    'Name' => '2000 Share',
-   'Description' => "Allows you to add Digg, Delicious and Reddit share icons to recent discussion",
+   'Description' => "Allows you to add Digg, Delicious and Reddit share icons to discussion list",
    'Version' => '1.0',
    'RequiredApplications' => array('Vanilla' => '2.1'),
    'MobileFriendly' => TRUE,
