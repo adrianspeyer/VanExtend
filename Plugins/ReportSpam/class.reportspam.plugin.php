@@ -4,7 +4,7 @@
 $PluginInfo['ReportSpam'] = array(
     'Name' => 'Report Spam',
     'Description' => 'Reports Spam to Stop Forum Spam.',
-    'Version' => '1.0.2',
+    'Version' => '1.0.3',
     'RequiredApplications' => array('Vanilla' => '2.1'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
