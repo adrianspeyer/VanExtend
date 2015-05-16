@@ -1,7 +1,7 @@
 <?php 
 $PluginInfo['PremHide'] = array(
    'Description' => 'This plugin allows you to insert Premium Content which will be hidden with [prem][/prem] shortcodes.',
-   'Version' => '1.0.7',
+   'Version' => '1.0.8',
    'MobileFriendly' => TRUE,
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
@@ -17,7 +17,7 @@ class PremHidePlugin extends Gdn_Plugin {
         $pattern = '#\[.?prem\]#si';
         $context = preg_replace($pattern, "", $body); 
         }  else {
-         $LoginStr = "<p>".T("Please")." <a href='".Url('/').SignInUrl($this->SelfUrl)."'>".T("Login ")."</a>".T("To See Premium Content")."</p>";
+         $LoginStr = "<p>".T("Please")." <a href='".Url('/entry/signin')."'>".T("Login ")."</a>".T("To See Premium Content")."</p>";
          $context = preg_replace($pattern, $LoginStr, $body);
         }  
         $Sender->EventArguments['Object']->FormatBody = $context;
