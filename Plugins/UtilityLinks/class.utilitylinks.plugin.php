@@ -2,9 +2,9 @@
 
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
-	'Description' => 'Adds links to "hidden" links for upgrading, refreshing or modifying your Vanilla Install .',
-	'Version' => '1.0.2',
-	'SettingsPermission' => 'Garden.AdminUser.Only',
+	'Description' => 'Adds handy links for checking, upgrading, refreshing or modifying your Vanilla Install.',
+	'Version' => '1.0.3',
+	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
     'License' => 'GNU GPL2'
@@ -13,7 +13,7 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 	
 	public function Base_GetAppSettingsMenuItems_Handler($Sender)
 	{
-	    if (Gdn::Session()->CheckPermission('Garden.AdminUser.Only')) {
+	    if (Gdn::Session()->CheckPermission('Garden.Settings.Manage')) {
 			$Menu = $Sender->EventArguments['SideMenu'];
 
 			$dbuptxt = 'DB Structure Upgrade';
@@ -28,7 +28,7 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 		
 			//If Feed Discussions enabled offer check feeds
 			if (C('EnabledPlugins.FeedDiscussions', TRUE)) {
-			$feedupdtxt = 'Feed Update';
+			$feedupdtxt = 'Check Feeds';
 			$Menu->AddLink('Utility Links', $feedupdtxt, '/plugin/feeddiscussions/checkfeeds');		
 			}
 
