@@ -3,7 +3,7 @@
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
 	'Description' => 'Adds handy links for checking, upgrading, refreshing or modifying your Vanilla Install.',
-	'Version' => '1.0.3',
+	'Version' => '1.0.4',
 	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
@@ -32,9 +32,11 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 			$Menu->AddLink('Utility Links', $feedupdtxt, '/plugin/feeddiscussions/checkfeeds');		
 			}
 
+			/* Removed from Vanillal 2.2
 			$dbupdtxt = 'Set Default Roles';
 			$Menu->AddLink('Utility Links', $dbupdtxt, '/dashboard/role/defaultroles');	
-			}	
+			}
+			*/
 	}		
 	
 	public function Setup() {
