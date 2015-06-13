@@ -5,6 +5,6 @@ Adds a Utility Links menu to your forum, so you don't have to remember or bookma
 <b>/utility/structure/</b>: Updates structure of your DB <br /> 
 <b>/dba/counts</b>: Refresh counts. Be careful on large forums or doing this during peak hours. <br /> 
 <b>/dashboard/utility/update</b>: Run this after upgrading/updating Vanilla Forums <br /> 
-<b>/dashboard/role/defaultroles</b>: While set by default sometimes you need to modify these roles. Proceed with caution!<br /> 
 
-Note: This plugin will only work for forum admin. To modify, change permsissions to "Garden.Settings.Manage".
+Check Feeds added for when you use the feed discussions plugin.
+
