@@ -86,7 +86,7 @@ _paq.push(['setCustomVariable',2,'Category','".$cname."','page']);";
 //Gets you membername
 
 $RenderCondition = C('Plugin.AdvancedPiwik.RenderCondition', 'all');
-$Type = (GetValue('No Memeber Name', $Sender->EventArguments['No Memeber Name']) == '1') ? "No Member Name" : "Include Member Name";
+$Type = (GetValue('No Member Name', $Sender->EventArguments['No Member Name']) == '1') ? "No Member Name" : "Include Member Name";
 if ($RenderCondition == "Include Member Name" ) {
 $membername = (Gdn::Session()->User->Name);
 if (($membername)!== null) {
