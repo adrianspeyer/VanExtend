@@ -7,8 +7,8 @@ $PluginInfo['Piwik'] = array(
 	'Version' => '2.6.7',
 	'SettingsUrl' => 'settings/piwik',
 	'Author' => "Adrian Speyer",
-    'AuthorUrl' => 'http://adrianspeyer.com',
-    'License' => 'GNU GPL2'
+        'AuthorUrl' => 'http://adrianspeyer.com',
+        'License' => 'GNU GPL2'
 );
 
 class PiwikPlugin implements Gdn_IPlugin {
