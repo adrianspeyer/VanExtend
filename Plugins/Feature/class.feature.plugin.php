@@ -5,6 +5,7 @@ $PluginInfo['Feature'] = array(
    'Description' => "Allows those with the permission to 'feature' a discussion",
    'Version' => '1.0',
    'RequiredApplications' => array('Vanilla' => '2.1'),
+   'RegisterPermissions' => array('Plugins.Feature.Manage'),
    'MobileFriendly' => TRUE,
    'Author' => "Adrian",
    'AuthorUrl' => 'http://adrianspeyer.com'
