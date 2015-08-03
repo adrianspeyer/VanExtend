@@ -1,8 +1,8 @@
 <?php if (!defined('APPLICATION')) exit();
 $PluginInfo['Alert'] = array(
    'Name' => 'Alert Discussion',
-   'Description' => "Allows you to tag a disucssion with an alert tag so CSS can be added",
-   'Version' => '1.0',
+   'Description' => "Allows you to tag a disucssion with an alert tag",
+   'Version' => '1.0.1',
    'RequiredApplications' => array('Vanilla' => '2.1'),
    'RegisterPermissions' => array('Plugins.Alert.Manage'),
    'MobileFriendly' => TRUE,
@@ -75,8 +75,10 @@ $PluginInfo['Alert'] = array(
 		  // Toggle Alert
 		  $Alert = GetValue('Alert', $Discussion) ? 0 : 1;
 		  
+		  
 		  // Update DateLastComment & redirect
 		  $Sender->DiscussionModel->SetProperty($DiscussionID, 'Alert', $Alert);
+		  $Sender->DiscussionModel->SetProperty($DiscussionID, 'Announce', $Alert);
 		  Redirect($_SERVER['HTTP_REFERER']);
 			}
 		  }
@@ -94,7 +96,7 @@ $PluginInfo['Alert'] = array(
 			   }  
 		
 		 /**
-		* Add CSS class to discussion
+		* Add CSS class to conversation
 		*/ 
 		 public function DiscussionsController_BeforeDiscussionName_Handler($Sender, $Args) {
 			 $Alert = GetValue('Alert', GetValue('Discussion', $Args));
