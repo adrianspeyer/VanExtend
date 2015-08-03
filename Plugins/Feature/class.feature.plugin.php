@@ -17,7 +17,7 @@ class FeaturePlugin extends Gdn_Plugin {
     * Add CSS
     */
 		public function Base_Render_Before($Sender) {
-		  $Sender->Head->AddCss('/plugins/Feature/design/Feature.css');
+		  $Sender->Head->AddCss('/plugins/Feature/design/feature.css');
 		 }
 	
 		public function Setup() {
