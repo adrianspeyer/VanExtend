@@ -12,7 +12,12 @@ background-color: #0805E8  !important;
 color:#fff !important;
 }
 
+.ItemDiscussion.Feature a{
+color: #fff !important;
+}
+
 /*hide announce tag if Feature */
 .ItemDiscussion.Feature .Tag.Tag-Announcement {
     display: none;
 }
+
