@@ -1,0 +1,18 @@
+.ItemDiscussion.Feature {
+     background-color: #2090FF ! important;
+     color: #ffffff !important;
+     border: solid 2px  #000 !important;
+}
+
+.Tag-Feature{
+background-color: #0805E8  !important;
+}
+
+.ItemDiscussion.Feature div.ItemContent.Discussion div.Meta.Meta-Discussion{
+color:#fff !important;
+}
+
+/*hide announce tag if Feature */
+.ItemDiscussion.Feature .Tag.Tag-Announcement {
+    display: none;
+}
