@@ -3,7 +3,7 @@
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
 	'Description' => 'Adds handy links for checking, upgrading, refreshing or modifying your Vanilla Install.',
-	'Version' => '1.0.4',
+	'Version' => '1.0.5',
 	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
