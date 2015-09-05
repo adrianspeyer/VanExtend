@@ -27,17 +27,14 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 		
 		
 			//If Feed Discussions enabled offer check feeds
-			if (C('EnabledPlugins.FeedDiscussions', TRUE)) {
+			if (C('EnabledPlugins.FeedDiscussions')) {
 			$feedupdtxt = 'Check Feeds';
 			$Menu->AddLink('Utility Links', $feedupdtxt, '/plugin/feeddiscussions/checkfeeds');		
 			}
 
-			//If greater than 2.2 don't show
-			if (APPLICATION_VERSION < 2.2) {
 			$dbupdtxt = 'Set Default Roles';
 			$Menu->AddLink('Utility Links', $dbupdtxt, '/dashboard/role/defaultroles');	
-			     } 
-			 }	
+			}	
 	}		
 	
 	public function Setup() {
