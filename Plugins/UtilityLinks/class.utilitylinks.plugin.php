@@ -27,7 +27,7 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 
 
 			//If Feed Discussions enabled offer check feeds
-		  if (Gdn::PluginManager()->CheckPlugin('FeedDiscussions') && C('Plugins.FeedDiscussions', TRUE)) {
+		    if (Gdn::PluginManager()->CheckPlugin('FeedDiscussions') && C('Plugins.FeedDiscussions', TRUE)) {
 			$feedupdtxt = 'Check Feeds';
 			$Menu->AddLink('Utility Links', $feedupdtxt, '/plugin/feeddiscussions/checkfeeds');
 			}
