@@ -3,7 +3,7 @@
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
 	'Description' => 'Adds handy links for checking, upgrading, refreshing or modifying your Vanilla Install.',
-	'Version' => '1.0.6',
+	'Version' => '1.0.7',
 	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
@@ -30,6 +30,16 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 		    if (Gdn::PluginManager()->CheckPlugin('FeedDiscussions') && C('Plugins.FeedDiscussions', TRUE)) {
 			$feedupdtxt = 'Check Feeds';
 			$Menu->AddLink('Utility Links', $feedupdtxt, '/plugin/feeddiscussions/checkfeeds');
+			}
+
+			//If Using Profile Extender version 3.0.2 enable profile export
+			$chkPEInfo = Gdn::pluginManager()->getPluginInfo(ProfileExtender, Gdn_PluginManager::ACCESS_PLUGINNAME);
+                        $version = val('Version', $chkPEInfo);
+			if ($version = '3.0.2') {
+			   if (Gdn::PluginManager()->CheckPlugin('ProfileExtender') && C('Plugins.ProfileExtender', TRUE)) {
+			   $profeptxt = 'Export User Profiles';
+			   $Menu->AddLink('Utility Links', $profeptxt, 'utility/exportProfiles');
+			  }
 			}
 
 			//If greater than 2.2 don't show
