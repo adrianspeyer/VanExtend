@@ -221,3 +221,5 @@ pip-log.txt
 
 .idea
 *.iml
+
+.DS_Store
