@@ -14,12 +14,11 @@ class HipPlugin extends Gdn_Plugin {
 
 public function Base_AppStartup_Handler() {
     $session = gdn::Session();
-    $ip = long2ip(rand(0, "4294967295"));
+    $nip = long2ip(rand(0, "4294967295"));
 
     if($session->User->Admin){
-    Gdn::Request()->RequestAddress($ip); //random ip.
+    Gdn::request()->RequestAddress($nip); //random ip.
      }
    }
  }
-
 
