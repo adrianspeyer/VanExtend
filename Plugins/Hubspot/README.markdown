@@ -1,5 +1,6 @@
-#Hubspot
+# Hubspot
 
-Allows users to be tracked and new contacts added to your Hubspot. You need to create a form in your Hubspot first
+Allows users to be tracked and new contacts added to your Hubspot. We use Hubspot events to achieve this.
+Events are only available to Enterprise customers.
 
-**WORK IN PROGRESS -- ALPHA PLUGIN-- NEEDS EXTENSIVE TESTING WITH HUBSPOT ENIVROMENT**
+http://developers.hubspot.com/docs/methods/enterprise_events/javascript_api
