@@ -38,10 +38,11 @@ class HubspotPlugin extends Gdn_Plugin {
    //Render tracking
     public function Base_AfterBody_Handler($Sender) {
 
-		  $PortalID = C('Plugins.Hubspot.PortalID');
+    if  session->isValid(){
+	$PortalID = C('Plugins.Hubspot.PortalID');
         $usermail = Gdn::Session()->User->Email;
         $username = Gdn::Session()->User->Name;
-
+       }
    //Render EMAIL TRACKING
    if (isset($usermail, $PortalID)) {
       echo'
