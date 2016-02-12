@@ -4,7 +4,7 @@ $PluginInfo['Hubspot'] = array(
    'Name' => 'Hubspot',
    'Description' => 'Adds Hubspot tracking, and new users to your Hubspot contacts list. We use Hubspot events to achieve this.
 Events are only available to Enterprise customers.',
-   'Version' => '1.0.2',
+   'Version' => '1.0.3',
    'SettingsUrl' => '/settings/hubspot',
    'SettingsPermission' => 'Garden.Settings.Manage',
    'RequiredApplications' => array('Vanilla' => '2.1'),
@@ -20,9 +20,7 @@ class HubspotPlugin extends Gdn_Plugin {
       $Sender->SetData('Title', T('Hubspot Settings'));
 
 	   $Text = '<div class="Info">' .
-            sprintf(
-                T('Enter your Hubspot ID, which is your Hubspot Account number.')
-            ) .
+                T('Enter your Hubspot ID, which is your Hubspot Account number.').
             '</div>';
         $Sender->AddAsset('Content', $Text, 'MoreLink');
 
@@ -38,13 +36,16 @@ class HubspotPlugin extends Gdn_Plugin {
    //Render tracking
     public function Base_AfterBody_Handler($Sender) {
 
-		  $PortalID = C('Plugins.Hubspot.PortalID');
+	 $PortalID = C('Plugins.Hubspot.PortalID');
+
+   if ($session->isValid()){
         $usermail = Gdn::Session()->User->Email;
         $username = Gdn::Session()->User->Name;
+   }
 
    //Render EMAIL TRACKING
    if (isset($usermail, $PortalID)) {
-      echo'
+   echo'
        <script>
           var _hsq = _hsq || [];
           _hsq.push(["identify", {
@@ -70,4 +71,3 @@ class HubspotPlugin extends Gdn_Plugin {
      }
 	}
 }
-
