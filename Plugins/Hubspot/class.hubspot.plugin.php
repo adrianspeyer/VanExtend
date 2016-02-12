@@ -15,7 +15,7 @@ Events are only available to Enterprise customers.',
 
 class HubspotPlugin extends Gdn_Plugin
 {
-    public function settingsController_hubspot_create($Sender, $Args = array())
+    public function settingsController_Hubspot_Create($Sender, $Args = array())
     {
         $Sender->Permission('Garden.Settings.Manage');
         $Sender->SetData('Title', T('Hubspot Settings'));
@@ -28,7 +28,7 @@ class HubspotPlugin extends Gdn_Plugin
 
         $Cf = new ConfigurationModule($Sender);
         $Cf->Initialize(array(
-          'plugins.hubspot.portalid' => array(),
+          'Plugins.Hubspot.PortalID' => array(),
           ));
 
         $Sender->AddSideMenu('dashboard/settings/plugins');
@@ -38,15 +38,16 @@ class HubspotPlugin extends Gdn_Plugin
    //Render tracking
     public function base_AfterBody_Handler($Sender)
     {
-        $portalid = C('plugins.hubspot.portalid');
-
-        if ($session->isValid()) {
+        $Session = Gdn::session();
+        if ($Session->isValid()) {
             $usermail = Gdn::Session()->User->Email;
             $username = Gdn::Session()->User->Name;
         }
 
+        $PortalID = C('Plugins.Hubspot.PortalID');
+
    //Render EMAIL TRACKING
-   if (isset($usermail, $portalid)) {
+   if (isset($usermail, $PortalID)) {
        echo'
        <script>
           var _hsq = _hsq || [];
@@ -57,14 +58,14 @@ class HubspotPlugin extends Gdn_Plugin
       </script>';
    }
 
-        if (isset($portalid)) {
+        if (isset($PortalID)) {
             echo"
         <!-- Start of Async HubSpot Analytics Code -->
            <script type='text/javascript'>
              (function(d,s,i,r) {
                if (d.getElementById(i)){return;}
                var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-               n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/".$portalid.".js';
+               n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/".$PortalID.".js';
                e.parentNode.insertBefore(n, e);
              })(document,'script','hs-analytics',300000);
            </script>
