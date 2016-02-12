@@ -8,45 +8,46 @@ Events are only available to Enterprise customers.',
    'SettingsUrl' => '/settings/hubspot',
    'SettingsPermission' => 'Garden.Settings.Manage',
    'RequiredApplications' => array('Vanilla' => '2.1'),
-   'MobileFriendly' => TRUE,
-   'Author' => "Adrian Speyer",
-   'AuthorUrl' => 'http://adrianspeyer.com'
+   'MobileFriendly' => true,
+   'Author' => 'Adrian Speyer',
+   'AuthorUrl' => 'http://adrianspeyer.com',
 );
 
-class HubspotPlugin extends Gdn_Plugin {
+class HubspotPlugin extends Gdn_Plugin
+{
+    public function SettingsController_Hubspot_Create($Sender, $Args = array())
+    {
+        $Sender->Permission('Garden.Settings.Manage');
+        $Sender->SetData('Title', T('Hubspot Settings'));
 
-   public function SettingsController_Hubspot_Create($Sender, $Args = array()) {
-      $Sender->Permission('Garden.Settings.Manage');
-      $Sender->SetData('Title', T('Hubspot Settings'));
-
-      $Text = '<div class="Info">'
+        $Text = '<div class="Info">'
       .T('Enter your Hubspot ID, which is your Hubspot Account number.')
       .'</div>';
 
-      $Sender->AddAsset('Content', $Text, 'MoreLink');
+        $Sender->AddAsset('Content', $Text, 'MoreLink');
 
-      $Cf = new ConfigurationModule($Sender);
-      $Cf->Initialize(array(
-          'Plugins.Hubspot.PortalID' => array()
+        $Cf = new ConfigurationModule($Sender);
+        $Cf->Initialize(array(
+          'Plugins.Hubspot.PortalID' => array(),
           ));
 
-      $Sender->AddSideMenu('dashboard/settings/plugins');
-      $Cf->RenderAll();
-   }
+        $Sender->AddSideMenu('dashboard/settings/plugins');
+        $Cf->RenderAll();
+    }
 
    //Render tracking
-    public function Base_AfterBody_Handler($Sender) {
+    public function Base_AfterBody_Handler($Sender)
+    {
+        $PortalID = C('Plugins.Hubspot.PortalID');
 
-	$PortalID = C('Plugins.Hubspot.PortalID');
-
-   if ($session->isValid()){
-        $usermail = Gdn::Session()->User->Email;
-        $username = Gdn::Session()->User->Name;
-   }
+        if ($session->isValid()) {
+            $usermail = Gdn::Session()->User->Email;
+            $username = Gdn::Session()->User->Name;
+        }
 
    //Render EMAIL TRACKING
    if (isset($usermail, $PortalID)) {
-   echo'
+       echo'
        <script>
           var _hsq = _hsq || [];
           _hsq.push(["identify", {
@@ -56,8 +57,8 @@ class HubspotPlugin extends Gdn_Plugin {
       </script>';
    }
 
-   if (isset ($PortalID)){
-         echo"
+        if (isset($PortalID)) {
+            echo"
         <!-- Start of Async HubSpot Analytics Code -->
            <script type='text/javascript'>
              (function(d,s,i,r) {
@@ -69,6 +70,6 @@ class HubspotPlugin extends Gdn_Plugin {
            </script>
       <!-- End of Async HubSpot Analytics Code -->
       ";
-     }
-   }
+        }
+    }
 }
