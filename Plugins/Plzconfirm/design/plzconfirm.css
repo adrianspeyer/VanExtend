@@ -1,0 +1,21 @@
+div.InformWrapper div.confirmalert {
+    background-color: red;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+div.InformMessages div.InformWrapper div.InformMessage div.confirmalert {
+position: fixed;
+height: auto;
+width: 100%;   
+top: 0;
+right: 0;
+
+}
+
+div.InformMessages div.InformWrapper div.InformMessage div.confirmalert p{
+font-size:30px !important;
+}
