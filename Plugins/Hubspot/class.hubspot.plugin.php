@@ -38,11 +38,12 @@ class HubspotPlugin extends Gdn_Plugin
    //Render tracking
     public function base_AfterBody_Handler($Sender)
     {
-        $Session = Gdn::session();
-        if ($Session->isValid()) {
+      $Session = Gdn::session();
+
+      if ($Session->isValid()) {
             $usermail = Gdn::Session()->User->Email;
             $username = Gdn::Session()->User->Name;
-        }
+         }
 
         $PortalID = C('Plugins.Hubspot.PortalID');
 
@@ -58,8 +59,8 @@ class HubspotPlugin extends Gdn_Plugin
       </script>';
    }
 
-        if (isset($PortalID)) {
-            echo"
+   if (isset($PortalID)) {
+      echo"
         <!-- Start of Async HubSpot Analytics Code -->
            <script type='text/javascript'>
              (function(d,s,i,r) {
