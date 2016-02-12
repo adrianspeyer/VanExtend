@@ -19,10 +19,10 @@ class HubspotPlugin extends Gdn_Plugin {
       $Sender->Permission('Garden.Settings.Manage');
       $Sender->SetData('Title', T('Hubspot Settings'));
 
-	   $Text = '<div class="Info">' .
-                T('Enter your Hubspot ID, which is your Hubspot Account number.').
-            '</div>';
-        $Sender->AddAsset('Content', $Text, 'MoreLink');
+	   $Text = '<div class="Info">'
+                .T('Enter your Hubspot ID, which is your Hubspot Account number.')
+              .'</div>';
+      $Sender->AddAsset('Content', $Text, 'MoreLink');
 
       $Cf = new ConfigurationModule($Sender);
       $Cf->Initialize(array(
@@ -36,7 +36,7 @@ class HubspotPlugin extends Gdn_Plugin {
    //Render tracking
     public function Base_AfterBody_Handler($Sender) {
 
-	 $PortalID = C('Plugins.Hubspot.PortalID');
+	$PortalID = C('Plugins.Hubspot.PortalID');
 
    if ($session->isValid()){
         $usermail = Gdn::Session()->User->Email;
