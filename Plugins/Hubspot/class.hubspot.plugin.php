@@ -15,7 +15,7 @@ Events are only available to Enterprise customers.',
 
 class HubspotPlugin extends Gdn_Plugin
 {
-    public function SettingsController_Hubspot_Create($Sender, $Args = array())
+    public function settingsController_hubspot_create($Sender, $Args = array())
     {
         $Sender->Permission('Garden.Settings.Manage');
         $Sender->SetData('Title', T('Hubspot Settings'));
@@ -28,7 +28,7 @@ class HubspotPlugin extends Gdn_Plugin
 
         $Cf = new ConfigurationModule($Sender);
         $Cf->Initialize(array(
-          'Plugins.Hubspot.PortalID' => array(),
+          'plugins.hubspot.portalid' => array(),
           ));
 
         $Sender->AddSideMenu('dashboard/settings/plugins');
@@ -36,9 +36,9 @@ class HubspotPlugin extends Gdn_Plugin
     }
 
    //Render tracking
-    public function Base_AfterBody_Handler($Sender)
+    public function base_AfterBody_Handler($Sender)
     {
-        $PortalID = C('Plugins.Hubspot.PortalID');
+        $portalid = C('plugins.hubspot.portalid');
 
         if ($session->isValid()) {
             $usermail = Gdn::Session()->User->Email;
@@ -46,7 +46,7 @@ class HubspotPlugin extends Gdn_Plugin
         }
 
    //Render EMAIL TRACKING
-   if (isset($usermail, $PortalID)) {
+   if (isset($usermail, $portalid)) {
        echo'
        <script>
           var _hsq = _hsq || [];
@@ -57,14 +57,14 @@ class HubspotPlugin extends Gdn_Plugin
       </script>';
    }
 
-        if (isset($PortalID)) {
+        if (isset($portalid)) {
             echo"
         <!-- Start of Async HubSpot Analytics Code -->
            <script type='text/javascript'>
              (function(d,s,i,r) {
                if (d.getElementById(i)){return;}
                var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-               n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/".$PortalID.".js';
+               n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/".$portalid.".js';
                e.parentNode.insertBefore(n, e);
              })(document,'script','hs-analytics',300000);
            </script>
