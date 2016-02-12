@@ -69,5 +69,5 @@ class HubspotPlugin extends Gdn_Plugin {
       <!-- End of Async HubSpot Analytics Code -->
       ";
      }
-	}
+   }
 }
