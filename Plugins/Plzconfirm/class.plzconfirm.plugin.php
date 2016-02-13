@@ -2,8 +2,9 @@
 
     $PluginInfo['Plzconfirm'] = array(
     'Name' => 'Please Confirm',
-    'Description' => 'Make it much clearer need to confirm email.',
-    'Version' => '1.0',
+    'Description' => 'If you have a requirement for people to confirm their email to register, this makes it 
+more obvious to the prospective member to confirm their email.',
+    'Version' => '1.0.1',
     'MobileFriendly' => TRUE,
     'License' => 'GNU GPL2',
     'Author' => "Adrian Speyer",
