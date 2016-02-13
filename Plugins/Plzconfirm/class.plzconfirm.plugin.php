@@ -23,8 +23,7 @@ $Session = Gdn::session();
 if ($Session->isValid()) {
             $Confirmed = val('Confirmed', Gdn::session()->User, true);
             if (UserModel::requireConfirmEmail() && !$Confirmed) {
-                $Message = formatString(t('<div class="confirmalert"><p> Before continuing, you\'ll need to confirm your email. <a href="{/entry/emailconfirmrequest,url}">Resend confirmation</a>.</p></div>.', '<div class="confirmalert"><p> Before continuing, you\'ll need to confirm your email. <a href="{/entry/emailconfirmrequest,url}">Resend confirmation</a>.</p></div>'));
-                $Sender->informMessage($Message,'');
+                echo '<div class="confirmalert"><p> Before continuing, you\'ll need to confirm your email. <a href="{/entry/emailconfirmrequest,url}">Resend confirmation</a>.</p></div>';      
             }
         }
      }
