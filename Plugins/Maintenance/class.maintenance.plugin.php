@@ -8,32 +8,14 @@
 $PluginInfo['Maintenance'] = array(
    'Name' => 'Closed For Maintenance',
    'Description' => 'Maintenance plugin for Vanilla 2, allows you to close your site to do maintenance',
-   'Version' => '0.8.3',
-   'Author' => "Adrian Speyer",
-   'AuthorUrl' => 'http://adrianspeyer.com',
-   'License' => 'GNU GPL2'
-
-);
-<?php if(!defined('APPLICATION')) die();
-/**
-*
-* # Maintenance Plugin for Vanilla 2 #
-* You can change closed.php to be whatever you want to be shown while you are closed for upgrade.
-* 
-*
-*/
-
-$PluginInfo['Maintenance'] = array(
-   'Name' => 'Closed For Maintenance',
-   'Description' => 'Maintenance plugin for Vanilla 2, allows you to close your site to do maintenance',
-   'Version' => '0.8.1',
+   'Version' => '0.8.4',
    'Author' => "Adrian Speyer",
    'AuthorUrl' => 'http://adrianspeyer.com',
    'License' => 'GNU GPL2'
 
 );
 
-class Maintenance  extends Gdn_Plugin {
+class MaintenancePlugin  extends Gdn_Plugin {
 
     public function Base_Render_Before($Sender) {
 		if ( Gdn::Session()->CheckPermission('Garden.Settings.Manage')) {
