@@ -42,9 +42,8 @@ if ($SingleTag = "rant"||"Rant") {
          $Sender->EventArguments['LastUser'] = "Unknown";
                }
          }
-     }
 */
-
+}
          public function categoriesController_afterDiscussionLabels_handler($Sender, $Args) {
 
          //   $Sender->EventArguments['LastComment'] = "Unknown";
