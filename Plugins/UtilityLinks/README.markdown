@@ -6,8 +6,8 @@ Adds a Utility Links menu to your forum, so you don't have to remember or bookma
 <b>/dba/counts</b>: Refresh counts. Be careful on large forums or doing this during peak hours. <br /> 
 <b>/dashboard/utility/update</b>: Run this after upgrading/updating Vanilla Forums <br /> 
 
-If FeedDiscussions enabled offer check feeds
-If using Profile Extender version 3.0.2, enables profile export
+If FeedDiscussions enabled offer check feeds<br /> 
+If using Profile Extender version 3.0.2, enables profile export<br /> 
 
 Check Feeds added for when you use the feed discussions plugin.
 
