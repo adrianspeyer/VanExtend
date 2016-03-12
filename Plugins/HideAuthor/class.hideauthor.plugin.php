@@ -13,16 +13,16 @@ $PluginInfo['HideAuthor'] = array(
 class HideAuthorPlugin extends Gdn_Plugin {
 	public function DiscussionController_BeforeCommentDisplay_Handler($Sender, $Args) {
 			if (!CheckPermission('Garden.Moderation.Manage')){
-				if (!Gdn::Session()->IsValid()) { 
+				if (!Gdn::Session()->IsValid()) {
 					$Args['Author'] ='';
 				}
 			}
 		}
 		
-		
+
 	public function DiscussionController_BeforeDiscussionDisplay_Handler($Sender, $Args) {
 			if (!CheckPermission('Garden.Moderation.Manage')){
-				if (!Gdn::Session()->IsValid()) { 
+				if (!Gdn::Session()->IsValid()) {
 					$Args['Author'] ='';
 				}
 			}
