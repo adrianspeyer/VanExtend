@@ -4,7 +4,7 @@
 $PluginInfo['ReportSpam'] = array(
     'Name' => 'Report Spam',
     'Description' => 'Reports Spam to Stop Forum Spam.',
-    'Version' => '1.0.4',
+    'Version' => '1.0.5',
     'RequiredApplications' => array('Vanilla' => '2.3'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
@@ -131,7 +131,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
 
     public function SendToSFS($Username, $IP, $Email, $Evidence, $Sender) {
 
-          $data = "username=" . urlencode($Username) . "&ip_addr=".$IP."&email="
+          $data = "username=" . urlencode($Username) . "&ip_addr=" . urlencode($IP) . "&email="
             . urlencode($Email) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence="
             . urlencode($Evidence);
 
