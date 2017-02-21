@@ -132,8 +132,8 @@ class ReportSpamPlugin extends Gdn_Plugin {
     public function SendToSFS($Username, $IP, $Email, $Evidence, $Sender) {
 
         $data = "username=" . urlencode($Username) . "&ip_addr=".$IP."&email="
-	. urlencode($Email) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence="
-            . urlencode($Evidence);
+	  . urlencode($Email) . "&api_key=" . C('Plugins.ReportSpam.APIKey') . "&evidence="
+          . urlencode($Evidence);
 
         $Proxy = new ProxyRequest();
         $Response = $Proxy->Request(
