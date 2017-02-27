@@ -56,7 +56,7 @@ class HubspotPlugin extends Gdn_Plugin {
             echo '
             <script>
                 var _hsq = _hsq || [];
-                _hsq.push(["identify",{email: "'.htmlspecialchars($user->Email).'", firstname: "'.htmlspecialchars($user->Name).'"}]);
+                _hsq.push(["identify",{email: "'.htmlspecialchars($user->Email).'", id: "'.htmlspecialchars($user->Name).'"}]);
             </script>';
         }
 
