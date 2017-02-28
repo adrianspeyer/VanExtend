@@ -4,7 +4,7 @@ $PluginInfo['Hubspot'] = array(
    'Name' => 'Hubspot',
    'Description' => 'Adds Hubspot tracking, and new users to your Hubspot contacts list. We use Hubspot Events JavaScript API to achieve this.
         Events are only available to Hubspot Enterprise customers.',
-   'Version' => '1.0.4',
+   'Version' => '1.0.5',
    'SettingsUrl' => '/settings/hubspot',
    'SettingsPermission' => 'Garden.Settings.Manage',
    'RequiredApplications' => array('Vanilla' => '2.1'),
