@@ -4,7 +4,7 @@
 $PluginInfo['ReportSpam'] = array(
     'Name' => 'Report Spam',
     'Description' => 'Reports Spam to Stop Forum Spam.',
-    'Version' => '1.0.5',
+    'Version' => '1.0.6',
     'RequiredApplications' => array('Vanilla' => '2.3'),
     'SettingsUrl' => '/settings/reportspam',
     'SettingsPermission' => 'Garden.Settings.Manage',
@@ -74,7 +74,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
         if ($Sender->Form->AuthenticatedPostBack() === true) {
             if (!$this->SendToSFS(
                 $content['InsertName'],
-                $content['InsertIPAddress'],
+                ipDecode($content['InsertIPAddress']),
                 $content['InsertEmail'],
                 $content['Body'],
                 $Sender
