@@ -74,7 +74,7 @@ class ReportSpamPlugin extends Gdn_Plugin {
         if ($Sender->Form->AuthenticatedPostBack() === true) {
             if (!$this->SendToSFS(
                 $content['InsertName'],
-                $content['InsertIPAddress'],
+                ipDecode($content['InsertIPAddress']),
                 $content['InsertEmail'],
                 $content['Body'],
                 $Sender
