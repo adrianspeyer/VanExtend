@@ -4,7 +4,7 @@
 echo $this->Form->Open();
 ?>
 <p>
-    <?php echo T('Report this user to Stop Forum Spam'); ?>
+    <?php echo T('Report this user to Stop Forum Spam and:'); ?>
 </p>
 <div style="text-align: center">
 <img src="<?php echo Url('/plugins/ReportSpam/design/images/stop-spam.png'); ?>" alt="Stop forum spam">
