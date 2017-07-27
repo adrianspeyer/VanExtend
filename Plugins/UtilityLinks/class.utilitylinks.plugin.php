@@ -3,7 +3,7 @@
 $PluginInfo['UtilityLinks'] = array(
 	'Name' => 'Utility Links',
 	'Description' => 'Adds handy links for checking, upgrading, refreshing or modifying your Vanilla Install.',
-	'Version' => '1.0.7',
+	'Version' => '1.0.8',
 	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => "Adrian Speyer",
     'AuthorUrl' => 'http://adrianspeyer.com',
@@ -22,7 +22,7 @@ class UpdateLinksPlugin extends Gdn_Plugin {
 
 
 			$Menu->AddLink('Utility Links', T('DB Structure Upgrade'), 'dashboard/utility/structure/all');
-			$Menu->AddLink('Utility Links',T('DB Update Counts'), 'dashboard/dba/counts');
+			$Menu->AddLink('Utility Links',T('DB Update Counts'), '/dba/counts');
 			$Menu->AddLink('Utility Links', T('Utility Update'),'dashboard/utility/update');
 
 
