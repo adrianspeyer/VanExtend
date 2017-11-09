@@ -5,3 +5,7 @@ This plugin is released under the GNU GPL2 license.
 ## Installation
 
 Once you have added the plugin to your Vanilla plugin folder, then you may post links to videos in the following format:
+
+```
+https://sports.yahoo.com/video/breaking-down-potential-2018-olympic-005826307.html
+```
